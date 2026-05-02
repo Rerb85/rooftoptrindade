@@ -223,7 +223,7 @@ footer strong{color:rgba(255,255,255,.65);}
       <div class="modal-name" id="mName"></div>
       <div class="modal-desc" id="mDesc"></div>
       <div class="modal-pills" id="mPills"></div>
-      <div class="modal-dist-box">
+      <div class="modal-dist-box" id="mDistBox">
         <div style="font-size:24px">🏠</div>
         <div>
           <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:2px" id="mDistLbl">Distância do Rooftop Trindade</div>
@@ -374,6 +374,11 @@ const amenities = [
     desc:{pt:'Cozinha completa com geladeira, micro-ondas, utensílios, temperos e tudo que você precisa para preparar suas refeições na ilha com total conforto.',en:'Complete kitchen with refrigerator, microwave, utensils, spices and everything you need to cook your meals on the island with full comfort.'},
     bg:'linear-gradient(135deg,#2a1f00,#5a4200)',
     img:'https://ucc539e0d02ea2f874df8e595c8c.previews.dropboxusercontent.com/p/thumb/AC_VjxTDEGreLzDti8wIkWvyR9g6zyjep03EEaBBBl1Y6-CMJID0IpZLTnIKcKf1p_YCbLF_FopZW06nBnpaoW02A6jpbKzUgLV76zA01dAbTsh7lkTzS94Z7sqr3cQj9greLD2Ra8VweCibGVrz8y1dW_NaitNZTJ8m_Nf3ngt5uvFWXwkWyVylC8R2VB6sTPEQjBWhTutE93vA68pjEGZm9vY6__AVvHacqiQfR6Z3FpNB-Q-8pVK4WJPKZisyvgPeZih2IGtXX5scyP94dJ0j3YZI5mPA3iL7MshTtt8EwQDXdUxLbBIszRzRWpl7KoSY17twk7BrM9XPX0wnwSaqKm1WhNxF_9TwwdoHHLbKXfyWy8zUSx-mAluhqbBX6RmNHv6SRkiQvhD-WTPj5yIY/p.jpeg?is_prewarmed=true' },
+  { emoji:'🧺', badge:{pt:'Lavanderia',en:'Laundry'},
+    title:{pt:'Lavanderia Equipada com Lava-e-seca',en:'Equipped Laundry with Washer-Dryer'},
+    desc:{pt:'Lavanderia prática com lava-e-seca, espaço para organizar roupas e produtos de limpeza para tornar sua estadia ainda mais confortável.',en:'Practical laundry room with washer-dryer, space to organize clothes and cleaning products to make your stay even more comfortable.'},
+    bg:'linear-gradient(135deg,#4a4a4a,#727272)',
+    img:'https://uc5ccf74bba379263e340a446f75.previews.dropboxusercontent.com/p/thumb/AC-kdSt-aQWc0DcHXxeJjzr1WpOMcD8PoKzOj_nrDuuqUPQJS_dgle3vToF5ym03cZNU-kpDAL4__2NQpQSLA6cvcYOvCujlrqCGZXSW4nTqtBOU3OEZIkh85mtwRtyNBGPwg8IXJNgXsfVfDbYFNblgqpisHVntismbFdg7VDDLipUXF7Hk8bx7dkI6GMzBUUO5uvDAEMxsgsq06nHLCvT_sDPlPZFChuESohNtJ1D6XTpmdYkYU5Vgj-JcDYEWy-NDkdnXDDRpbLFUvpu8r0xSELC5iHxPhL-FgLX421Gu5vGVu8qm82TRoEIelNlQTWAtqveQn4zUS9h4EJQ95DfwbIk1cpcBquabTQwA6hS3_eZ3QG6zgtetU6rVCSmHuv5aL_KTzFJqkKWAlPrXwS8n/p.jpeg?is_prewarmed=true' },
   { emoji:'🚿', badge:{pt:'Banheiro',en:'Bathroom'},
     title:{pt:'Banheiro Moderno',en:'Modern Bathroom'},
     desc:{pt:'Banheiro com acabamento premium, box de vidro do piso ao teto, cuba preta moderna e iluminação de LED. Design sofisticado que combina com toda a proposta do espaço.',en:'Bathroom with premium finishes, full-height glass shower, modern black vessel sink and LED lighting. Sophisticated design matching the whole space concept.'},
@@ -388,7 +393,7 @@ const amenities = [
     title:{pt:'Quarto Aconchegante',en:'Cozy Bedroom'},
     desc:{pt:'Cama confortável de casal, climatizado com ar condicionado inverter de última geração e isolamento acústico para um sono tranquilo e reparador a qualquer hora.',en:'Comfortable double bed, air conditioned with latest-generation inverter A/C and soundproofing for peaceful, restful sleep at any time.'},
     bg:'linear-gradient(135deg,#1a2a3d,#2c4a6e)',
-    img:'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80' },
+    img:'https://uc8f334d4052886bcdc4b1687600.previews.dropboxusercontent.com/p/thumb/AC96MEWaQwrIX5XPlHf0Tcb921NaTmpUXvwDD7AmBxCoI_srD5YWWMxI_D_8jn4R4Rh7D0EroNANqTd1YSnl5LRMrcgq7FwwXzITKJrH8j7rU5EPgIm5DWm-Q_gjibLAex8wgNDboY_AMa5oWZ5csW5sWOF5oFRAq7l9PlfZ1T3nbGTMrn9Fcy1QJk-_galKpGyrW-7iCCd5f11lh15tis2l0s3ZTnjVpUWbMBNnEOMfwmEBAS2-G1H2W1GvzJUoRxjEQPfvF22VCaZmnq3FB193rKAC633BaHJNCwxUIoaPhH64c48pJrNh1qRsMZRhSryX81z4F_c9I0T0eHGUMGiDF2NV38rg8iHIAPFNwghOS6FeSRBCv1aoY2553H1-41p1oISjPIf0pElc7s7bW6r0/p.jpeg?is_prewarmed=true' },
   { emoji:'🛒', badge:{pt:'Térreo · Bloco Dália',en:'Ground Floor · Bloco Dália'},
     title:{pt:'Minimercado Self-Checkout',en:'Self-Checkout Mini Market'},
     desc:{pt:'Mercadinho completo no térreo do Bloco Dália com bebidas, alimentos, produtos de limpeza e itens básicos. Funcionamento 24h com sistema self-checkout — comodidade total.',en:'Full mini market at Bloco Dália ground floor with drinks, food, cleaning products and essentials. 24h operation with self-checkout system — total convenience.'},
@@ -418,10 +423,17 @@ function renderAmenities() {
         <div class="amenity-desc">${descTxt}</div>
         <div class="amenity-tag">✦ ${badgeTxt}</div>
       </div>`;
-    card.querySelector('img').addEventListener('error', function(){
+    const imgEl = card.querySelector('.amenity-photo img');
+    imgEl.addEventListener('error', function(){
       this.style.display='none';
       document.getElementById('abg'+i).style.display='flex';
     });
+    card.addEventListener('click',()=>openModal({
+      img: a.img,
+      name: titleTxt,
+      desc: descTxt,
+      tag: a.badge,
+    }));
     grid.appendChild(card);
   });
 }
@@ -556,23 +568,28 @@ function renderCards(){
 }
 
 function openModal(p){
-  const dist=haversine(HOME_LAT,HOME_LNG,p.lat,p.lng);
-  const c=catColors[p.cat];
   const img=document.getElementById('mImg'), fb=document.getElementById('mFallback');
   img.style.display='block';fb.style.display='none';
-  fb.textContent=p.emoji;fb.style.background=`linear-gradient(135deg,${c}22,${c}55)`;
-  img.src=p.img;img.alt=p.name;
-  document.getElementById('mCat').textContent=p.tag[lang]||p.tag.pt;
-  document.getElementById('mCat').style.color=c;
-  document.getElementById('mName').textContent=p.name;
-  document.getElementById('mDesc').textContent=p.desc[lang]||p.desc.pt;
+  img.src=p.img;img.alt=p.name||'';
+  const catText = p.tag? (p.tag[lang]||p.tag.pt) : '';
+  document.getElementById('mCat').textContent = catText;
+  document.getElementById('mCat').style.color = p.cat? catColors[p.cat] : 'var(--ocean-deep)';
+  document.getElementById('mName').textContent = p.name || '';
+  document.getElementById('mDesc').textContent = p.desc || '';
   const pe=document.getElementById('mPills');
-  if(p.pills){const arr=p.pills[lang]||p.pills.pt;pe.innerHTML=arr.map(t=>`<span class="modal-pill" style="background:${c}18;color:${c}">${t}</span>`).join('');}
+  if(p.pills){const arr=p.pills[lang]||p.pills.pt;pe.innerHTML=arr.map(t=>`<span class="modal-pill" style="background:${p.cat?catColors[p.cat]:'var(--ocean)'}18;color:${p.cat?catColors[p.cat]:'var(--ocean)'}">${t}</span>`).join('');}
   else pe.innerHTML='';
-  document.getElementById('mDistLbl').textContent=lang==='pt'?'Distância do Rooftop Trindade':'Distance from Rooftop Trindade';
-  document.getElementById('mDistVal').textContent=fmtDist(dist)+(lang==='pt'?' daqui':' away');
+  const distBox=document.getElementById('mDistBox');
+  if(typeof p.lat === 'number' && typeof p.lng === 'number'){
+    const dist=haversine(HOME_LAT,HOME_LNG,p.lat,p.lng);
+    document.getElementById('mDistLbl').textContent=lang==='pt'?'Distância do Rooftop Trindade':'Distance from Rooftop Trindade';
+    document.getElementById('mDistVal').textContent=fmtDist(dist)+(lang==='pt'?' daqui':' away');
+    distBox.style.display='flex';
+    if(map)map.flyTo([p.lat,p.lng],14,{duration:1.2});
+  } else {
+    distBox.style.display='none';
+  }
   document.getElementById('modal').classList.add('open');
-  if(map)map.flyTo([p.lat,p.lng],14,{duration:1.2});
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeAdmin();}});
