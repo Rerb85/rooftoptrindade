@@ -21,17 +21,31 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 /* ── HERO ── */
 .hero{
   position:relative;min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;overflow:hidden;padding:40px 20px;
+  align-items:flex-start;justify-content:flex-start;overflow:hidden;padding:80px 60px 40px;
+  text-align:left;
   /* ▼ SUBSTITUA PELO URL DA SUA FOTO ▼ */
   background-image:url(https://uc090ba3e5010e2ea749edcb60eb.previews.dropboxusercontent.com/p/thumb/AC8gROnWpSCGVNP2gBTr2CuzZrgQFeTa0Lf5Zn85e64C75aORQZreYrtX3z1-QQDHkUEmYk9B6sQSAUJkjStAZT8aT3cKPuVNugCDvtuxfpBXkTqCDRb8Y_Iy1oxAforp6vaNwA3hrgCIGFswCU6CxRcAdtWsy7bV5vWAClhPOXKB8AOURNL4xJicoJwyw3elIaKGIXt2RS6w6I0ORjkmNo7iqtigSJGeEHMKJr3KXkea3nDlQectMTcb4sLOCZX_VLceSmD4BP53FklkUaNcBR5dO_v__wzGvnEPoWCQWJ2I1saNlHZjeNa4MYKHtQtdJGyLlk8XaBqkcmeQEN_yo-L_VInrrN0n_MAoD99NNHhbufR7KPyLaFuf3FxkBJyr_QmUXAJ3r2QqS3_eA88Gekj/p.jpeg?is_prewarmed=true);
   background-size:cover;background-position:center;
 }
-.hero-badge{font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-light);margin-bottom:12px;opacity:0;animation:fadeUp .8s ease forwards .2s;}
-.hero-address{font-size:13px;font-weight:300;color:rgba(220,220,220,0.55);letter-spacing:.08em;margin-bottom:16px;opacity:0;animation:fadeUp .8s ease forwards .35s;}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,9vw,100px);font-weight:300;color:#e8e8e8;line-height:.92;text-align:center;opacity:0;animation:fadeUp .9s ease forwards .4s;}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.25) 0%,rgba(0,0,0,0.55) 45%,rgba(0,0,0,0.72) 100%);z-index:0;}
+.hero > *{position:relative;z-index:1;}
+.hero-badge{font-size:12px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--accent-light);margin-bottom:14px;opacity:0;animation:fadeUp .8s ease forwards .2s;}
+.hero-address{font-size:14px;font-weight:300;color:rgba(235,235,235,0.8);letter-spacing:.08em;margin-bottom:18px;opacity:0;animation:fadeUp .8s ease forwards .35s;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,10vw,110px);font-weight:300;color:#f2f2f2;line-height:0.92;text-align:left;max-width:760px;opacity:0;animation:fadeUp .9s ease forwards .4s;}
 .hero-title em{font-style:italic;color:var(--accent-light);}
-.hero-sub{font-size:16px;font-weight:300;color:rgba(220,220,220,.75);text-align:center;margin-top:20px;max-width:420px;line-height:1.7;opacity:0;animation:fadeUp .9s ease forwards .6s;}
-.hero-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .9s ease forwards .8s;}
+.hero-sub{font-size:18px;font-weight:300;color:rgba(235,235,235,.85);text-align:left;margin-top:22px;max-width:700px;line-height:1.75;opacity:0;animation:fadeUp .9s ease forwards .6s;}
+.hero-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start;opacity:0;animation:fadeUp .9s ease forwards .8s;}
+@media (max-width: 900px) {
+  .hero{align-items:flex-start;padding:60px 32px 40px;}
+  .hero-title{font-size:clamp(48px,12vw,82px);}
+  .hero-sub{font-size:16px;max-width:100%;}
+}
+@media (max-width: 620px) {
+  .hero{align-items:center;text-align:center;padding:50px 24px 40px;}
+  .hero-title{max-width:100%;}
+  .hero-sub{max-width:100%;}
+  .hero-cta{justify-content:center;}
+}
 .btn{padding:12px 28px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .3s;}
 .btn-primary{background:var(--accent);color:#1a1a1a;}
 .btn-primary:hover{background:var(--accent-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,184,0,.4);}
@@ -366,8 +380,8 @@ const amenities = [
     bg:'linear-gradient(135deg,#1c1c2e,#2d2d4e)',
     img:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80' },
   { emoji:'💆', badge:{pt:'Sauna',en:'Sauna'},
-    title:{pt:'Sauna Húmida',en:'Steam Sauna'},
-    desc:{pt:'Sauna húmida para relaxar após um longo dia de passeios pelas praias e trilhas da ilha. Um diferencial raro em acomodações de curta temporada em Florianópolis.',en:'Steam sauna to relax after a long day exploring the island\'s beaches and trails. A rare feature in short-term rentals in Florianópolis.'},
+    title:{pt:'Sauna Úmida',en:'Steam Sauna'},
+    desc:{pt:'Uma bela sauna para relaxar após um longo dia de passeios pelas praias e trilhas da ilha. Um diferencial raro em acomodações de curta temporada em Florianópolis.',en:'Steam sauna to relax after a long day exploring the island\'s beaches and trails. A rare feature in short-term rentals in Florianópolis.'},
     bg:'linear-gradient(135deg,#003d38,#006e60)',
     img:'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=80' },
   { emoji:'🛏️', badge:{pt:'Quarto',en:'Bedroom'},
