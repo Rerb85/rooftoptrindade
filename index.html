@@ -71,6 +71,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 .amenity-photo{position:relative;height:195px;overflow:hidden;flex-shrink:0;}
 .amenity-photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
 .amenity-card:hover .amenity-photo img{transform:scale(1.06);}
+.amenity-card.portrait .amenity-photo img{object-fit:contain;}
 .amenity-photo-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px;}
 .amenity-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.25),transparent 50%);}
 .amenity-badge{position:absolute;top:12px;left:12px;background:rgba(13,61,82,.85);backdrop-filter:blur(8px);color:var(--accent-light);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 11px;border-radius:100px;}
@@ -116,6 +117,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 .modal-ov.open{opacity:1;visibility:visible;}
 .modal-box{background:#fff;border-radius:18px;overflow:hidden;max-width:530px;width:100%;box-shadow:0 28px 70px rgba(0,0,0,.4);transform:translateY(22px) scale(.97);transition:all .35s cubic-bezier(.34,1.56,.64,1);max-height:90vh;overflow-y:auto;}
 .modal-ov.open .modal-box{transform:translateY(0) scale(1);}
+.modal-ov.image-only .modal-body{display:none;}
+.modal-ov.image-only .modal-img-wrap{height:auto;max-height:80vh;}
 .modal-img-wrap{position:relative;height:240px;overflow:hidden;background:#e8e8e8;flex-shrink:0;}
 .modal-img{width:100%;height:100%;object-fit:cover;}
 .modal-fallback{width:100%;height:100%;display:none;align-items:center;justify-content:center;font-size:68px;}
@@ -383,12 +386,14 @@ const amenities = [
     title:{pt:'Banheiro Moderno',en:'Modern Bathroom'},
     desc:{pt:'Banheiro com acabamento premium, box de vidro do piso ao teto, cuba preta moderna e iluminação de LED. Design sofisticado que combina com toda a proposta do espaço.',en:'Bathroom with premium finishes, full-height glass shower, modern black vessel sink and LED lighting. Sophisticated design matching the whole space concept.'},
     bg:'linear-gradient(135deg,#1c1c2e,#2d2d4e)',
-    img:'https://uc0e2189902b0bba08422820c7ba.previews.dropboxusercontent.com/p/thumb/AC88mnwaelP2SpyeLRYkC-lcXCg6GX-YOc4JeXdRR3eB9UJY7Lnt9wui7TROdNhJFYb3KicjT8nvwBliasak5ENoI-h45qFIkn0Pc777yIBksUiT87TZ2sxpc9G4hhGjtQUR9nIaY-pCnKMQVYo_SyGPGF2cNpMfndy8SKLnG0Yx2mw0Pezycna34sZjUMPl2aSVNos1jC8I-3-TNfLHaTpvuOFa8_o50yaSt3e2uI9BO4PCip1XH-tZpPFhOxm21yMAbpiyX8-XBtwm8qED-nMrlCC5NC0nKDB_Y7D3iOLnELqybPc3GPmzmlmbcxe-lQZc1wRm1FzWkv4-pnzgMlFkf2EYFCLK1VTXzHTE7jZ4rRxzcMwuA1VevmNM7AVGjL_IFmbB9o0FOI37yJAX9mGT/p.jpeg?is_prewarmed=true' },
+    img:'https://uc0e2189902b0bba08422820c7ba.previews.dropboxusercontent.com/p/thumb/AC88mnwaelP2SpyeLRYkC-lcXCg6GX-YOc4JeXdRR3eB9UJY7Lnt9wui7TROdNhJFYb3KicjT8nvwBliasak5ENoI-h45qFIkn0Pc777yIBksUiT87TZ2sxpc9G4hhGjtQUR9nIaY-pCnKMQVYo_SyGPGF2cNpMfndy8SKLnG0Yx2mw0Pezycna34sZjUMPl2aSVNos1jC8I-3-TNfLHaTpvuOFa8_o50yaSt3e2uI9BO4PCip1XH-tZpPFhOxm21yMAbpiyX8-XBtwm8qED-nMrlCC5NC0nKDB_Y7D3iOLnELqybPc3GPmzmlmbcxe-lQZc1wRm1FzWkv4-pnzgMlFkf2EYFCLK1VTXzHTE7jZ4rRxzcMwuA1VevmNM7AVGjL_IFmbB9o0FOI37yJAX9mGT/p.jpeg?is_prewarmed=true',
+    imageOnly: true },
   { emoji:'💆', badge:{pt:'Sauna',en:'Sauna'},
     title:{pt:'Sauna Úmida',en:'Steam Sauna'},
     desc:{pt:'Uma bela sauna para relaxar após um longo dia de passeios pelas praias e trilhas da ilha. Um diferencial raro em acomodações de curta temporada em Florianópolis.',en:'Steam sauna to relax after a long day exploring the island\'s beaches and trails. A rare feature in short-term rentals in Florianópolis.'},
     bg:'linear-gradient(135deg,#003d38,#006e60)',
-    img:'https://uce65d3a4a77938ec500e5fe6b45.previews.dropboxusercontent.com/p/thumb/AC-eghgKLCp4NPx_RtuA51tEwXFiNTQBeTY5-aXyRkRbRprXM0vaf1CI6lQ0NMM0BmQVGvGSYtCn2yg_bxI4J27zzz8xCdNsR5yRYWMkojCvMX_suM-RCeHaku8_R6LgF1T12Ra834_FhYllWvnoV4dvA6cI6pGobKVXfvyqCgjXeIv3lw6ngANHmROCuuoOmSJRD4tziXqpkNRdgCNgIh1H_6urQjEXoyTVsW0FpBAWn5Q7r4-VaQ-DiCD8ET9h4Xkv9kGBND2dNLRSCfKa_gXD8nfBwgXmzSjREMVCn9lgFTyTtEUViMiTrAF080Ba5VWMw1QPnkeRYh6psCURZXGAQYpor7myi08gi8j5TumwMT22yt3ivkn9P1zTEHHRb43lNvMrHikQycRNwuF6SF3q/p.jpeg?is_prewarmed=true' },
+    img:'https://uce65d3a4a77938ec500e5fe6b45.previews.dropboxusercontent.com/p/thumb/AC-eghgKLCp4NPx_RtuA51tEwXFiNTQBeTY5-aXyRkRbRprXM0vaf1CI6lQ0NMM0BmQVGvGSYtCn2yg_bxI4J27zzz8xCdNsR5yRYWMkojCvMX_suM-RCeHaku8_R6LgF1T12Ra834_FhYllWvnoV4dvA6cI6pGobKVXfvyqCgjXeIv3lw6ngANHmROCuuoOmSJRD4tziXqpkNRdgCNgIh1H_6urQjEXoyTVsW0FpBAWn5Q7r4-VaQ-DiCD8ET9h4Xkv9kGBND2dNLRSCfKa_gXD8nfBwgXmzSjREMVCn9lgFTyTtEUViMiTrAF080Ba5VWMw1QPnkeRYh6psCURZXGAQYpor7myi08gi8j5TumwMT22yt3ivkn9P1zTEHHRb43lNvMrHikQycRNwuF6SF3q/p.jpeg?is_prewarmed=true',
+    imageOnly: true },
   { emoji:'🛏️', badge:{pt:'Quarto',en:'Bedroom'},
     title:{pt:'Quarto Aconchegante',en:'Cozy Bedroom'},
     desc:{pt:'Cama confortável de casal, climatizado com ar condicionado inverter de última geração e isolamento acústico para um sono tranquilo e reparador a qualquer hora.',en:'Comfortable double bed, air conditioned with latest-generation inverter A/C and soundproofing for peaceful, restful sleep at any time.'},
@@ -409,7 +414,7 @@ function renderAmenities() {
     const titleTxt = a.title[lang]||a.title.pt;
     const descTxt  = a.desc[lang]||a.desc.pt;
     const card = document.createElement('div');
-    card.className = 'amenity-card';
+    card.className = 'amenity-card' + (a.imageOnly ? ' portrait' : '');
     card.style.animationDelay = `${i*0.07}s`;
     card.innerHTML = `
       <div class="amenity-photo">
@@ -433,6 +438,7 @@ function renderAmenities() {
       name: titleTxt,
       desc: descTxt,
       tag: a.badge,
+      imageOnly: a.imageOnly,
     }));
     grid.appendChild(card);
   });
@@ -568,6 +574,8 @@ function renderCards(){
 }
 
 function openModal(p){
+  const modal = document.getElementById('modal');
+  modal.classList.toggle('image-only', !!p.imageOnly);
   const img=document.getElementById('mImg'), fb=document.getElementById('mFallback');
   img.style.display='block';fb.style.display='none';
   img.src=p.img;img.alt=p.name||'';
@@ -589,7 +597,7 @@ function openModal(p){
   } else {
     distBox.style.display='none';
   }
-  document.getElementById('modal').classList.add('open');
+  modal.classList.add('open');
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeAdmin();}});
