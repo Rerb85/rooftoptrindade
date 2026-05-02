@@ -111,6 +111,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 .card-foot{display:flex;align-items:center;justify-content:space-between;}
 .card-dist{font-size:13px;font-weight:500;color:var(--ocean);}
 .card-price{font-size:13px;color:var(--accent);font-weight:600;}
+.card-route{display:inline-flex;margin-top:12px;padding:9px 12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s;}
+.card-route:hover{background:var(--ocean-deep);}
 
 /* ── MODAL ── */
 .modal-ov{position:fixed;inset:0;background:rgba(7,30,43,.88);z-index:10000;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;visibility:hidden;transition:all .3s;backdrop-filter:blur(6px);}
@@ -131,6 +133,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 .modal-pill{font-size:12px;font-weight:500;padding:4px 11px;border-radius:100px;background:var(--sand);}
 .modal-dist-box{background:var(--sand);border-radius:11px;padding:13px 17px;display:flex;align-items:center;gap:13px;}
 .modal-dist-val{font-size:21px;font-weight:600;color:var(--ocean);font-family:'Cormorant Garamond',serif;}
+.modal-route-wrap{margin-top:14px;}
+.modal-route-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s;}
+.modal-route-link:hover{background:var(--ocean-deep);}
 
 /* ── TIPS ── */
 .tips-section{background:var(--ocean-deep);padding:60px 24px;text-align:center;color:#ddd;margin-top:72px;}
@@ -225,13 +230,16 @@ footer strong{color:rgba(255,255,255,.65);}
       <div class="modal-cat" id="mCat"></div>
       <div class="modal-name" id="mName"></div>
       <div class="modal-desc" id="mDesc"></div>
-      <div class="modal-pills" id="mPills"></div>
+          <div class="modal-pills" id="mPills"></div>
       <div class="modal-dist-box" id="mDistBox">
         <div style="font-size:24px">🏠</div>
         <div>
           <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:2px" id="mDistLbl">Distância do Rooftop Trindade</div>
           <div class="modal-dist-val" id="mDistVal">—</div>
         </div>
+      </div>
+      <div class="modal-route-wrap" id="mRouteWrap">
+        <a id="mRouteLink" class="modal-route-link" href="#" target="_blank" rel="noopener noreferrer"></a>
       </div>
     </div>
   </div>
@@ -496,19 +504,30 @@ const places = [
   {id:1,cat:'restaurant',emoji:'🦪',name:'Ostradamus',tag:{pt:'Frutos do Mar',en:'Seafood'},desc:{pt:'A experiência definitiva de ostras frescas no Ribeirão da Ilha, com vistas da baía sul.',en:'The ultimate fresh oyster experience in Ribeirão da Ilha, with stunning southern bay views.'},lat:-27.7706,lng:-48.5572,price:3,img:'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=70'},
   {id:2,cat:'restaurant',emoji:'🐟',name:'Bar do Arante',tag:{pt:'Tradicional',en:'Traditional'},desc:{pt:'Uma instituição desde 1958. Peixe fresco, cachaça e bilhetes nas paredes no Pântano do Sul.',en:'An institution since 1958. Fresh fish, cachaça and notes on the walls at Pântano do Sul.'},lat:-27.7869,lng:-48.5048,price:2,img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=70'},
   {id:3,cat:'restaurant',emoji:'🍤',name:'Toca da Garoupa',tag:{pt:'Frutos do Mar',en:'Seafood'},desc:{pt:'Favorito local na Lagoa da Conceição. Moquecas e peixes frescos preparados com maestria.',en:'Local favorite at Lagoa da Conceição. Amazing moquecas and fresh fish.'},lat:-27.5903,lng:-48.4617,price:2,img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=70'},
-  {id:4,cat:'restaurant',emoji:'🥩',name:'Dom Restaurante',tag:{pt:'Alta Gastronomia',en:'Fine Dining'},desc:{pt:'Cozinha contemporânea celebrando ingredientes locais e sabores costeiros.',en:'Contemporary cuisine celebrating local ingredients and coastal flavors.'},lat:-27.5831,lng:-48.5523,price:3,img:'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=70'},
+  {id:5,cat:'restaurant',emoji:'🥘',name:'Via Gastronômica de Coqueiros',tag:{pt:'Gastronomia Local',en:'Local Cuisine'},desc:{pt:'Rota gastronômica em Coqueiros com bares e restaurantes à beira da baía.',en:'Culinary route in Coqueiros with bars and restaurants along the bay.'},lat:-27.5865,lng:-48.5395,price:2,img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=70'},
+  {id:17,cat:'restaurant',emoji:'🥗',name:'Via Gastronômica do Santa Mônica',tag:{pt:'Gastronomia Urbana',en:'Urban Cuisine'},desc:{pt:'Avenida Madre Benvenuta reunindo sabores diversos e opções modernas em Floripa.',en:'Avenida Madre Benvenuta bringing diverse flavors and modern dining options in Floripa.'},lat:-27.5950,lng:-48.5195,price:2,img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=70'},
   {id:6,cat:'beach',emoji:'🏖️',name:'Jurerê Internacional',tag:{pt:'Praia',en:'Beach'},desc:{pt:'Costa norte glamourosa. Águas cristalinas, beach clubs exclusivos e a cena mais sofisticada de Floripa.',en:'Glamorous north shore. Crystal waters, exclusive beach clubs and Floripa\'s most upscale scene.'},lat:-27.4370,lng:-48.4961,price:0,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
   {id:7,cat:'beach',emoji:'🏄',name:'Praia da Joaquina',tag:{pt:'Surf',en:'Surf'},desc:{pt:'Ondas atlânticas selvagens — a capital do surf de Florianópolis. Dunas para sandboard.',en:'Wild Atlantic waves — Florianópolis\'s surf capital. Dunes perfect for sandboarding.'},lat:-27.6437,lng:-48.4389,price:0,img:'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=70'},
   {id:8,cat:'beach',emoji:'🌅',name:'Lagoa da Conceição',tag:{pt:'Lagoa',en:'Lagoon'},desc:{pt:'Windsurf, kitesurf, vida noturna e o pôr do sol mais bonito da ilha.',en:'Windsurfing, kitesurfing, nightlife and the island\'s most beautiful sunset.'},lat:-27.5928,lng:-48.4575,price:0,img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=70'},
   {id:9,cat:'beach',emoji:'⛱️',name:'Praia dos Ingleses',tag:{pt:'Praia Calma',en:'Calm Beach'},desc:{pt:'Águas quentes e calmas no norte. Popular para famílias, com clima de vila.',en:'Warm, calm waters in the north. Family-friendly with a village vibe.'},lat:-27.4365,lng:-48.3990,price:0,img:'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=70'},
-  {id:21,cat:'beach',emoji:'🌿',name:'Praia da Armação',tag:{pt:'Praia',en:'Beach'},desc:{pt:'Vila de pescadores com águas verdes e a bela Lagoa do Peri ao fundo. Muito preservada.',en:'Fishing village with green waters and beautiful Lagoa do Peri behind. Very preserved.'},lat:-27.7476,lng:-48.5023,price:0,img:'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=600&q=70'},
-  {id:22,cat:'beach',emoji:'🧘',name:'Praia do Matadeiro',tag:{pt:'Praia Selvagem',en:'Wild Beach'},desc:{pt:'Pequena joia acessível apenas a pé pela Armação. Piscinas naturais e tranquilidade total.',en:'Small gem accessible only on foot from Armação. Natural pools and absolute tranquility.'},lat:-27.7605,lng:-48.4981,price:0,img:'https://images.unsplash.com/photo-1528569937393-ee892b976859?w=600&q=70'},
+  {id:21,cat:'beach',emoji:'🌿',name:'Praia da Armação',tag:{pt:'Praia',en:'Beach'},desc:{pt:'Vila de pescadores, possui uma das partidas para a ilha do campeche, predominante aguas calmas, vizinha à praia do Matadeiro, possui piscinas naturais e belas paisagens.',en:'Fishing village with one of the boat departures to Campeche Island, mostly calm waters, neighboring Praia do Matadeiro, with natural pools and beautiful scenery.'},lat:-27.7476,lng:-48.5023,price:0,img:'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=600&q=70'},
+  {id:22,cat:'beach',emoji:'🧘',name:'Praia do Matadeiro',tag:{pt:'Praia Selvagem',en:'Wild Beach'},desc:{pt:'É um refúgio preservado de 850 metros entre a Armação e a Lagoinha do Leste, famoso por águas verde-esmeralda, areia fina e ondas fortes, ideal para surfe. Possui a entrada para a trilha mais longa da Lagoinha do Leste.',en:'A preserved 850-meter refuge between Armação and Lagoinha do Leste, famous for emerald green waters, fine sand and strong waves ideal for surfing. It has the entrance to the longest Lagoinha do Leste trail.'},lat:-27.7605,lng:-48.4981,price:0,img:'https://images.unsplash.com/photo-1528569937393-ee892b976859?w=600&q=70'},
   {id:23,cat:'beach',emoji:'🎣',name:'Pântano do Sul',tag:{pt:'Praia',en:'Beach'},desc:{pt:'Vila de pescadores autêntica no sul. Frutos do mar fresquíssimos e o famoso Bar do Arante.',en:'Authentic fishing village in the south. Ultra-fresh seafood and the famous Bar do Arante.'},lat:-27.7869,lng:-48.5057,price:0,img:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=70'},
   {id:24,cat:'beach',emoji:'⚓',name:'Praia de Naufragados',tag:{pt:'Praia Selvagem',en:'Wild Beach'},desc:{pt:'A praia mais remota da ilha, acessível só por trilha ou barco. Farol histórico e isolamento total.',en:'The island\'s most remote beach, only by trail or boat. Historic lighthouse and total isolation.'},lat:-27.8138,lng:-48.4756,price:0,img:'https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?w=600&q=70'},
   {id:25,cat:'beach',emoji:'💎',name:'Lagoa do Peri',tag:{pt:'Lagoa',en:'Lagoon'},desc:{pt:'Maior lagoa de água doce da ilha, dentro de parque municipal. Ideal para caiaque e natação.',en:'The island\'s largest freshwater lagoon in a municipal park. Ideal for kayaking and swimming.'},lat:-27.7380,lng:-48.5090,price:0,img:'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=600&q=70'},
   {id:26,cat:'beach',emoji:'🤙',name:'Morro das Pedras',tag:{pt:'Surf',en:'Surf'},desc:{pt:'Praia alternativa com forte cultura de surf. Atmosfera descontraída e ondas perfeitas.',en:'Alternative beach with a strong surf culture. Laid-back atmosphere and perfect waves.'},lat:-27.7080,lng:-48.4820,price:0,img:'https://images.unsplash.com/photo-1464736614822-bdb7b5e4d482?w=600&q=70'},
-  {id:27,cat:'beach',emoji:'💦',name:'Cachoeira do Bom Jesus',tag:{pt:'Praia Norte',en:'North Beach'},desc:{pt:'Praia calma no norte com cachoeira descendo até a areia. Ótima para famílias.',en:'Calm north beach with a waterfall flowing to the sand. Great for families.'},lat:-27.4680,lng:-48.4280,price:0,img:'https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=600&q=70'},
+  {id:27,cat:'beach',emoji:'💦',name:'Cachoeira do Bom Jesus',tag:{pt:'Praia Norte',en:'North Beach'},desc:{pt:'Praia calma e tranquila com água limpa, poucas ondas, ideal para a família, com extensão de 3 km, fica entre Canasvieiras e Ponta das Canas.',en:'Calm and quiet beach with clean water, few waves, ideal for families, with a 3 km stretch between Canasvieiras and Ponta das Canas.'},lat:-27.4680,lng:-48.4280,price:0,img:'https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=600&q=70'},
   {id:28,cat:'beach',emoji:'🪸',name:'Canasvieiras',tag:{pt:'Praia Calma',en:'Calm Beach'},desc:{pt:'Águas rasas e calmas, excelente para crianças, com toda infraestrutura no norte.',en:'Shallow, calm waters excellent for children, with full infrastructure in the north.'},lat:-27.4270,lng:-48.4720,price:0,img:'https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=600&q=70'},
+  {id:45,cat:'beach',emoji:'🌿',name:'Ponta das Canas',tag:{pt:'Praia Norte',en:'North Beach'},desc:{pt:'Praia do norte com areia clara e mar calmo, popular entre famílias. Fácil acesso e infraestrutura turística.',en:'North coast beach with pale sand and calm sea, popular with families. Easy access and visitor infrastructure.'},lat:-27.4255,lng:-48.4290,price:0,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
+  {id:46,cat:'beach',emoji:'🌊',name:'Praia Brava',tag:{pt:'Praia de Surf',en:'Surf Beach'},desc:{pt:'Praia de ondas fortes e visual rochoso, favorita de surfistas. Fica próxima a Ponta das Canas e oferece bares à beira-mar.',en:'Strong-surf beach with rocky scenery, surfer favorite. Close to Ponta das Canas with beachfront bars.'},lat:-27.4299,lng:-48.4355,price:0,img:'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=600&q=70'},
+  {id:47,cat:'beach',emoji:'🏝️',name:'Lagoinha do Norte',tag:{pt:'Praia Norte',en:'North Beach'},desc:{pt:'Pequena enseada de águas calmas e natureza preservada entre as praias do norte. Bom para famílias e trilhas leves.',en:'Small cove with calm waters and preserved nature on the north coast. Good for families and easy walks.'},lat:-27.4200,lng:-48.4440,price:0,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
+  {id:48,cat:'beach',emoji:'🏖️',name:'Praia do Campeche',tag:{pt:'Praia Selvagem',en:'Wild Beach'},desc:{pt:'Praia extensa com mar aberto, ideal para surfistas e famílias. Acesso por estrada e barcos para a ilha de Campeche.',en:'Expansive beach with open sea, ideal for surfers and families. Access by road and boats to Campeche Island.'},lat:-27.6110,lng:-48.4560,price:0,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
+  {id:49,cat:'beach',emoji:'🌅',name:'Praia da Daniela',tag:{pt:'Praia Norte',en:'North Beach'},desc:{pt:'Praia familiar de água clara e areia fina, localizada entre Canasvieiras e Ponta das Canas. Ideal para banho e stand up paddle.',en:'Family beach with clear water and fine sand, located between Canasvieiras and Ponta das Canas. Ideal for swimming and stand-up paddle.'},lat:-27.4290,lng:-48.4315,price:0,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
+  {id:50,cat:'beach',emoji:'🌴',name:'Praia dos Açores',tag:{pt:'Praia Norte',en:'North Beach'},desc:{pt:'Trecho nordestino com mar calmo em grande parte do ano e vista para o mar aberto. Boa opção para relaxar longe do agito.',en:'Northeastern stretch with mostly calm sea and open ocean views. A good choice for relaxing away from the crowds.'},lat:-27.4340,lng:-48.4355,price:0,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
+  {id:51,cat:'beach',emoji:'🏞️',name:'Praia da Solidão',tag:{pt:'Praia Selvagem',en:'Wild Beach'},desc:{pt:'Praia tranquila de acesso por trilha leve e paisagem selvagem. Mar aberto e rochas formam um cenário agreste.',en:'Quiet beach reached by an easy trail and wild scenery. Open sea and rocks shape a rugged setting.'},lat:-27.7550,lng:-48.4940,price:0,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
+  {id:52,cat:'trail',emoji:'💧',name:'Trilha da Cachoeira da Solidão',tag:{pt:'Trilha',en:'Trail'},desc:{pt:'Trilha curta e de fácil caminhada, de 15 a 20 minutos até a cachoeira com piscina natural de águas cristalinas, com sorte avistará baleias na costa.',en:'Short and easy hike, 15 to 20 minutes to the waterfall with a natural crystal-clear pool, and with luck you may spot whales along the coast.'},pills:{pt:['⏱ ~20 min','📏 ~1,5 km','⚡ Fácil','💧 Cachoeira'],en:['⏱ ~20 min','📏 ~1.5 km','⚡ Easy','💧 Waterfall']},lat:-27.7550,lng:-48.4940,price:0,img:'https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=600&q=70'},
+  {id:40,cat:'trail',emoji:'🥾',name:'Trilha da Lagoinha do Leste',tag:{pt:'Trilha',en:'Trail'},desc:{pt:'A trilha mais famosa de Floripa! Parte do Pântano do Sul e revela uma praia virgem após ~2h.',en:'Floripa\'s most famous trail! Starts at Pântano do Sul and reveals a virgin beach after ~2h.'},pills:{pt:['⏱ ~2h ida','📏 ~4 km','⚡ Moderada','🌊 Praia virgem'],en:['⏱ ~2h one way','📏 ~4 km','⚡ Moderate','🌊 Virgin beach']},lat:-27.7980,lng:-48.4860,price:0,img:'https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=600&q=70'},
+
   {id:40,cat:'trail',emoji:'🥾',name:'Trilha da Lagoinha do Leste',tag:{pt:'Trilha',en:'Trail'},desc:{pt:'A trilha mais famosa de Floripa! Parte do Pântano do Sul e revela uma praia virgem após ~2h.',en:'Floripa\'s most famous trail! Starts at Pântano do Sul and reveals a virgin beach after ~2h.'},pills:{pt:['⏱ ~2h ida','📏 ~4 km','⚡ Moderada','🌊 Praia virgem'],en:['⏱ ~2h one way','📏 ~4 km','⚡ Moderate','🌊 Virgin beach']},lat:-27.7980,lng:-48.4860,price:0,img:'https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=600&q=70'},
   {id:41,cat:'trail',emoji:'⚓',name:'Trilha de Naufragados',tag:{pt:'Trilha',en:'Trail'},desc:{pt:'Caminhada até o ponto mais sul da ilha. Mata Atlântica densa, praia isolada e farol histórico.',en:'Hike to the southernmost tip of the island. Dense Atlantic Forest, isolated beach and lighthouse.'},pills:{pt:['⏱ ~1h30 ida','📏 ~3,5 km','⚡ Fácil/Mod','🏠 Farol'],en:['⏱ ~1h30 one way','📏 ~3.5 km','⚡ Easy/Mod','🏠 Lighthouse']},lat:-27.8050,lng:-48.4820,price:0,img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=70'},
   {id:42,cat:'trail',emoji:'🌿',name:'Costa da Lagoa',tag:{pt:'Trilha',en:'Trail'},desc:{pt:'Trilha litorânea às margens da Lagoa da Conceição. Termina em restaurantes à beira-lago.',en:'Coastal trail along Lagoa da Conceição shores. Ends at beautiful lakeside restaurants.'},pills:{pt:['⏱ ~3h','📏 ~8 km','⚡ Moderada','🍽️ Restaurantes'],en:['⏱ ~3h','📏 ~8 km','⚡ Moderate','🍽️ Restaurants']},lat:-27.5670,lng:-48.4720,price:0,img:'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=70'},
@@ -516,15 +535,15 @@ const places = [
   {id:44,cat:'trail',emoji:'🦋',name:'Parque Maciço da Costeira',tag:{pt:'Trilha',en:'Trail'},desc:{pt:'Múltiplas trilhas em Mata Atlântica preservada no sul da ilha. Ideal para ecoturismo e aves.',en:'Multiple trails through preserved Atlantic Forest in the south. Ideal for ecotourism and birdwatching.'},pills:{pt:['⏱ Variadas','📏 Múltiplas','⚡ Fácil/Difícil','🦅 Aves'],en:['⏱ Varies','📏 Multiple','⚡ Easy/Hard','🦅 Birds']},lat:-27.6480,lng:-48.5080,price:0,img:'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=70'},
   {id:11,cat:'attraction',emoji:'🏛️',name:'Mercado Público',tag:{pt:'Cultura',en:'Culture'},desc:{pt:'Mercado histórico do século XIX no centro. Bares, produtos frescos e a essência de Floripa.',en:'Historic 19th-century market downtown. Bars, fresh produce and the essence of Floripa.'},lat:-27.5940,lng:-48.5487,price:0,img:'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=70'},
   {id:12,cat:'attraction',emoji:'⚓',name:'Forte de São José da Ponta Grossa',tag:{pt:'Fortaleza',en:'Fortress'},desc:{pt:'Fortaleza portuguesa do século XVIII no norte da ilha. Vistas espetaculares e história colonial.',en:'18th-century Portuguese fortress in the north. Spectacular views and colonial history.'},lat:-27.4383,lng:-48.5356,price:1,img:'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&q=70'},
-  {id:13,cat:'attraction',emoji:'👁️',name:'Mirante da Lagoa da Conceição',tag:{pt:'Mirante',en:'Viewpoint'},desc:{pt:'O mirante mais fotografado de Floripa. Vista aérea da lagoa e dunas. Melhor na hora dourada.',en:'Floripa\'s most photographed viewpoint. Aerial view of the lagoon and dunes. Best at golden hour.'},lat:-27.5720,lng:-48.4740,price:0,img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=70'},
+  {id:13,cat:'attraction',emoji:'👁️',name:'Mirante da Lagoa da Conceição',tag:{pt:'Mirante',en:'Viewpoint'},desc:{pt:'O mirante mais fotografado de Floripa. Vista panoramica da lagoa e dunas. Cartão posral. Melhor na hora dourada.',en:'Floripa\'s most photographed viewpoint. Aerial view of the lagoon and dunes. Best at golden hour.'},lat:-27.5720,lng:-48.4740,price:0,img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=70'},
   {id:14,cat:'attraction',emoji:'🌉',name:'Ponte Hercílio Luz',tag:{pt:'Monumento',en:'Landmark'},desc:{pt:'A ponte pênsil mais antiga do Brasil — símbolo de Florianópolis. Deslumbrante à noite iluminada.',en:'Brazil\'s oldest suspension bridge — symbol of Florianópolis. Breathtaking when lit at night.'},lat:-27.5980,lng:-48.5480,price:0,img:'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=70'},
   {id:29,cat:'attraction',emoji:'⛪',name:'Santo Antônio de Lisboa',tag:{pt:'Vila Histórica',en:'Historic Village'},desc:{pt:'O bairro mais charmoso de Floripa. Casas açorianas, ateliês, restaurantes beira-mar e pôr do sol inesquecível.',en:'Floripa\'s most charming neighborhood. Azorean houses, studios, waterfront restaurants and unforgettable sunsets.'},lat:-27.5106,lng:-48.5450,price:0,img:'https://images.unsplash.com/photo-1588714477688-cf28a50e94f7?w=600&q=70'},
   {id:30,cat:'attraction',emoji:'🎣',name:'Sambaqui',tag:{pt:'Vila de Pescadores',en:'Fishing Village'},desc:{pt:'Vila de pescadores açorianos na orla oeste. Ostras direto do mar e tranquilidade absoluta.',en:'Azorean fishing village on the west shore. Oysters straight from the sea and absolute peace.'},lat:-27.4830,lng:-48.5430,price:0,img:'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=70'},
   {id:31,cat:'attraction',emoji:'🏘️',name:'Cacupé',tag:{pt:'Bairro',en:'Neighborhood'},desc:{pt:'Orla tranquila à Baía Norte com pôr do sol dourado sobre o continente.',en:'Quiet waterfront on Baía Norte with golden sunsets over the mainland.'},lat:-27.5320,lng:-48.5480,price:0,img:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=70'},
   {id:32,cat:'attraction',emoji:'🏖️',name:'P12 Parador',tag:{pt:'Beach Club',en:'Beach Club'},desc:{pt:'O beach club mais icônico de Jurerê Internacional. Música, piscinas e gastronomia premium.',en:'The most iconic beach club in Jurerê Internacional. Music, pools and premium gastronomy.'},lat:-27.4378,lng:-48.4978,price:3,img:'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=70'},
   {id:33,cat:'attraction',emoji:'🏰',name:'Fortaleza de Anhatomirim',tag:{pt:'Fortaleza',en:'Fortress'},desc:{pt:'Fortaleza colonial na Ilha de Anhatomirim, acessível por barco. Uma das mais preservadas do Brasil.',en:'Colonial fortress on Anhatomirim Island, by boat. One of Brazil\'s best preserved.'},lat:-27.5040,lng:-48.5600,price:1,img:'https://images.unsplash.com/photo-1548625149-720754360967?w=600&q=70'},
-  {id:15,cat:'shopping',emoji:'🛍️',name:'Beiramar Shopping',tag:{pt:'Shopping',en:'Mall'},desc:{pt:'Principal shopping de Floripa às margens da Baía Sul. Lojas, cinemas e restaurantes.',en:'Floripa\'s main mall on Baía Sul shores. Stores, cinemas and restaurants.'},lat:-27.6023,lng:-48.5455,price:2,img:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=70'},
-  {id:16,cat:'shopping',emoji:'🏬',name:'Shopping Iguatemi',tag:{pt:'Shopping',en:'Mall'},desc:{pt:'Shopping premium com as melhores marcas, área gourmet e excelente localização.',en:'Premium mall with top brands, gourmet area and excellent location.'},lat:-27.5876,lng:-48.5167,price:3,img:'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=70'},
+  {id:15,cat:'shopping',emoji:'🛍️',name:'Beiramar Shopping',tag:{pt:'Shopping',en:'Mall'},desc:{pt:'Principal shopping de Floripa às margens da Baía Norte. Lojas, cinemas e restaurantes.',en:'Floripa\'s main mall on Baía Norte shores. Stores, cinemas and restaurants.'},lat:-27.6023,lng:-48.5455,price:2,img:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=70'},
+  {id:16,cat:'shopping',emoji:'🏬',name:'Shopping Villa Romana',tag:{pt:'Shopping',en:'Mall'},desc:{pt:'Shopping premium com as melhores marcas, área gourmet e excelente localização.',en:'Premium mall with top brands, gourmet area and excellent location.'},lat:-27.5876,lng:-48.5167,price:3,img:'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=70'},
   {id:18,cat:'nightlife',emoji:'🍺',name:'John Bull Pub',tag:{pt:'Bar',en:'Bar'},desc:{pt:'O bar mais icônico de Floripa. Chope gelado, música ao vivo e público animado.',en:'Floripa\'s most iconic bar. Cold draft beer, live music and a lively timeless crowd.'},lat:-27.5944,lng:-48.5474,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
   {id:19,cat:'nightlife',emoji:'🎉',name:'Jurerê Beach Village',tag:{pt:'Club',en:'Club'},desc:{pt:'Beach club com DJs internacionais, piscinas e a glamourosa cena de Floripa.',en:'Beach club with world-class DJs, pools and Floripa\'s glamorous crowd.'},lat:-27.4378,lng:-48.4978,price:3,img:'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=70'},
   {id:20,cat:'nightlife',emoji:'🎵',name:'Barra da Lagoa',tag:{pt:'Vida Noturna',en:'Nightlife'},desc:{pt:'Bares à beira-lago com shows ao vivo. O espírito livre de Floripa em estado puro.',en:'Lakeside bars with live shows. Floripa\'s free spirit in its purest form.'},lat:-27.5696,lng:-48.4295,price:1,img:'https://images.unsplash.com/photo-1516450137517-162bfbeb8dba?w=600&q=70'},
@@ -553,6 +572,7 @@ function renderCards(){
     const free=lang==='pt'?'Grátis':'Free';
     let pillsHtml='';
     if(p.pills){const arr=p.pills[lang]||p.pills.pt;pillsHtml=`<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px">${arr.map(t=>`<span style="background:${c}18;color:${c};font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px">${t}</span>`).join('')}</div>`;}
+    const routeUrl = `https://www.google.com/maps/dir/?api=1&origin=${HOME_LAT},${HOME_LNG}&destination=${p.lat},${p.lng}&travelmode=driving`;
     const card=document.createElement('div');
     card.className='place-card';
     card.style.animationDelay=`${i*.05}s`;
@@ -571,11 +591,14 @@ function renderCards(){
           <div class="card-dist">📍 ${fmtDist(dist)} ${sfx}</div>
           <div class="card-price">${p.price===0?free:'$'.repeat(p.price)}</div>
         </div>
+        <a class="card-route" href="${routeUrl}" target="_blank" rel="noopener noreferrer">${lang==='pt'?'Rota no Google Maps':'Route on Google Maps'}</a>
       </div>`;
     card.addEventListener('mouseenter',e=>{showTip(e,`📍 ${fmtDist(dist)} ${sfx}`);if(map)map.flyTo([p.lat,p.lng],13,{duration:1});});
     card.addEventListener('mousemove',moveTip);
     card.addEventListener('mouseleave',hideTip);
     card.addEventListener('click',()=>openModal(p));
+    const routeLink = card.querySelector('.card-route');
+    if(routeLink) routeLink.addEventListener('click',e=>e.stopPropagation());
     grid.appendChild(card);
   });
 }
@@ -590,19 +613,27 @@ function openModal(p){
   document.getElementById('mCat').textContent = catText;
   document.getElementById('mCat').style.color = p.cat? catColors[p.cat] : 'var(--ocean-deep)';
   document.getElementById('mName').textContent = p.name || '';
-  document.getElementById('mDesc').textContent = p.desc || '';
+  const descText = typeof p.desc === 'object' ? (p.desc[lang] || p.desc.pt) : (p.desc || '');
+  document.getElementById('mDesc').textContent = descText;
   const pe=document.getElementById('mPills');
   if(p.pills){const arr=p.pills[lang]||p.pills.pt;pe.innerHTML=arr.map(t=>`<span class="modal-pill" style="background:${p.cat?catColors[p.cat]:'var(--ocean)'}18;color:${p.cat?catColors[p.cat]:'var(--ocean)'}">${t}</span>`).join('');}
   else pe.innerHTML='';
   const distBox=document.getElementById('mDistBox');
+  const routeWrap=document.getElementById('mRouteWrap');
+  const routeLink=document.getElementById('mRouteLink');
   if(typeof p.lat === 'number' && typeof p.lng === 'number'){
     const dist=haversine(HOME_LAT,HOME_LNG,p.lat,p.lng);
     document.getElementById('mDistLbl').textContent=lang==='pt'?'Distância do Rooftop Trindade':'Distance from Rooftop Trindade';
     document.getElementById('mDistVal').textContent=fmtDist(dist)+(lang==='pt'?' daqui':' away');
     distBox.style.display='flex';
+    const routeUrl = `https://www.google.com/maps/dir/?api=1&origin=${HOME_LAT},${HOME_LNG}&destination=${p.lat},${p.lng}&travelmode=driving`;
+    routeLink.href = routeUrl;
+    routeLink.textContent = lang==='pt' ? 'Ver rota no Google Maps' : 'View route on Google Maps';
+    routeWrap.style.display='block';
     if(map)map.flyTo([p.lat,p.lng],14,{duration:1.2});
   } else {
     distBox.style.display='none';
+    routeWrap.style.display='none';
   }
   modal.classList.add('open');
 }
