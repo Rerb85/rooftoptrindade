@@ -121,8 +121,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 .modal-ov.image-only .modal-body{display:none;}
 .modal-ov.image-only .modal-img-wrap{height:auto;max-height:80vh;}
 .modal-img-wrap{position:relative;height:240px;overflow:hidden;background:#e8e8e8;flex-shrink:0;}
-.modal-img{width:100%;height:100%;object-fit:cover;}
+.modal-img{width:100%;height:100%;object-fit:cover;cursor:grab;}
+.modal-img.dragging{cursor:grabbing;}
 .modal-fallback{width:100%;height:100%;display:none;align-items:center;justify-content:center;font-size:68px;}
+.modal-img-nav{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:10;display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);padding:8px 16px;border-radius:100px;}
+.modal-nav-btn{background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer;padding:4px 8px;transition:all .2s;}
+.modal-nav-btn:hover{opacity:.7;}
+.modal-img-count{color:#fff;font-size:12px;font-weight:600;min-width:40px;text-align:center;letter-spacing:.05em;}
 .modal-close{position:absolute;top:13px;right:13px;width:32px;height:32px;background:rgba(255,255,255,.92);border:none;border-radius:50%;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;font-weight:700;}
 .modal-body{padding:20px 24px 24px;}
 .modal-cat{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px;}
@@ -380,56 +385,55 @@ const amenities = [
     title:{pt:'Terraço com Gramado',en:'Rooftop Terrace'},
     desc:{pt:'Gramado artificial, mesa que se transforma em banco, ombrelone e vista privilegiada da cidade à noite. Perfeito para se exercitar, tomar sol ou curtir uma noite enluarada.',en:'Artificial grass, table that converts to a bench, parasol and stunning city view at night. Perfect to exercise, sunbathe or enjoy a moonlit evening.'},
     bg:'linear-gradient(135deg,#0d3d1f,#1a6b32)',
-    img:'images/condominio1.jpg',
+    imgs:['images/condominio1.jpg','images/Condominio2.jpg','images/condominio3.jpg','images/condominio4.jpg','images/condominio5.jpg','images/condominio6.jpg'],
     imageOnly: true },
   { emoji:'🍖', badge:{pt:'Área Gourmet',en:'Gourmet Area'},
     title:{pt:'Área Gourmet Completa',en:'Full Gourmet Area'},
     desc:{pt:'Mesa de jantar que se transforma em mesa de bilhar. Equipada com fogão à lenha, braseiro e forno à lenha — ideal para reunir amigos e fazer aquela carne no ponto certo.',en:'Dining table that converts to a billiard table. Wood stove, grill and wood-fired oven — perfect for gathering friends and grilling to perfection.'},
     bg:'linear-gradient(135deg,#1a1a1a,#3d2200)',
-    img:'images/area_gourmet1.jpg',
-    imgs:['images/area_gourmet1.jpg','images/area_gourmet2.jpg'],
+    imgs:['images/area_gourmet1.jpg','images/area_gourmet2.jpg','images/area_gourmet3.jpg','images/area_gourmet4.jpg','images/area_gourmet5.jpg'],
     imageOnly: true },
   { emoji:'🛋️', badge:{pt:'Sala de Estar',en:'Living Room'},
     title:{pt:'Sala com Cantinho do Café',en:'Living Room & Coffee Nook'},
     desc:{pt:'Sofá aconchegante que se transforma em uma confortável cama de casal. Cantinho do café, TV tela grande com imagem de cinema e violão na parede para quem ama música.',en:'Cozy sofa that converts to a comfortable double bed. Coffee nook to start the day peacefully, large TV and guitars on the wall for music lovers.'},
     bg:'linear-gradient(135deg,#1c2340,#2e3a6e)',
-    img:'images/sala1.jpg',
+    imgs:['images/sala1.jpg','images/sala2.jpg','images/sala3.jpg'],
     imageOnly: true },
   { emoji:'🍳', badge:{pt:'Cozinha',en:'Kitchen'},
     title:{pt:'Cozinha Totalmente Equipada',en:'Fully Equipped Kitchen'},
     desc:{pt:'Cozinha completa com geladeira, micro-ondas, utensílios, temperos e tudo que você precisa para preparar suas refeições na ilha com total conforto.',en:'Complete kitchen with refrigerator, microwave, utensils, spices and everything you need to cook your meals on the island with full comfort.'},
     bg:'linear-gradient(135deg,#2a1f00,#5a4200)',
-    img:'images/cozinha1.jpg',
+    imgs:['images/cozinha1.jpg','images/cozinha2.jpg'],
     imageOnly: true },
   { emoji:'🧺', badge:{pt:'Lavanderia',en:'Laundry'},
     title:{pt:'Lavanderia Equipada com Lava-e-seca',en:'Equipped Laundry with Washer-Dryer'},
     desc:{pt:'Lavanderia prática com lava-e-seca, espaço para organizar roupas e produtos de limpeza para tornar sua estadia ainda mais confortável.',en:'Practical laundry room with washer-dryer, space to organize clothes and cleaning products to make your stay even more comfortable.'},
     bg:'linear-gradient(135deg,#4a4a4a,#727272)',
-    img:'images/lavanderia1.jpg',
+    imgs:['images/lavanderia1.jpg'],
     imageOnly: true },
   { emoji:'🚿', badge:{pt:'Banheiro',en:'Bathroom'},
     title:{pt:'Banheiro Moderno',en:'Modern Bathroom'},
     desc:{pt:'Banheiro com acabamento premium, box de vidro do piso ao teto, cuba preta moderna e iluminação de LED. Design sofisticado que combina com toda a proposta do espaço.',en:'Bathroom with premium finishes, full-height glass shower, modern black vessel sink and LED lighting. Sophisticated design matching the whole space concept.'},
     bg:'linear-gradient(135deg,#1c1c2e,#2d2d4e)',
-    img:'images/banheiro.jpg',
+    imgs:['images/banheiro.jpg'],
     imageOnly: true },
   { emoji:'💆', badge:{pt:'Sauna',en:'Sauna'},
     title:{pt:'Sauna Úmida',en:'Steam Sauna'},
     desc:{pt:'Uma bela sauna para relaxar após um longo dia de passeios pelas praias e trilhas da ilha. Um diferencial raro em acomodações de curta temporada em Florianópolis.',en:'Steam sauna to relax after a long day exploring the island\'s beaches and trails. A rare feature in short-term rentals in Florianópolis.'},
     bg:'linear-gradient(135deg,#003d38,#006e60)',
-    img:'images/sauna1.jpg',
+    imgs:['images/sauna1.jpg','images/sauna2.jpg'],
     imageOnly: true },
   { emoji:'🛏️', badge:{pt:'Quarto',en:'Bedroom'},
     title:{pt:'Quarto Aconchegante',en:'Cozy Bedroom'},
     desc:{pt:'Cama confortável de casal, climatizado com ar condicionado inverter de última geração e isolamento acústico para um sono tranquilo e reparador a qualquer hora.',en:'Comfortable double bed, air conditioned with latest-generation inverter A/C and soundproofing for peaceful, restful sleep at any time.'},
     bg:'linear-gradient(135deg,#1a2a3d,#2c4a6e)',
-    img:'images/quarto1_.png',
+    imgs:['images/quarto1_.png','images/quarto2_.png'],
     imageOnly: true },
   { emoji:'🛒', badge:{pt:'Térreo · Bloco Dália',en:'Ground Floor · Bloco Dália'},
     title:{pt:'Minimercado Self-Checkout',en:'Self-Checkout Mini Market'},
     desc:{pt:'Mercadinho completo no térreo do Bloco Dália com bebidas, alimentos, produtos de limpeza e itens básicos. Funcionamento 24h com sistema self-checkout — comodidade total.',en:'Full mini market at Bloco Dália ground floor with drinks, food, cleaning products and essentials. 24h operation with self-checkout system — total convenience.'},
     bg:'linear-gradient(135deg,#1a3a1a,#2e6b2e)',
-    img:'images/minimercado1.jpg',
+    imgs:['images/minimercado1.jpg','images/minimercado2.jpg'],
     imageOnly: true },
 ];
 
@@ -445,7 +449,7 @@ function renderAmenities() {
     card.style.animationDelay = `${i*0.07}s`;
     card.innerHTML = `
       <div class="amenity-photo">
-        <img src="${a.img}" alt="${titleTxt}" loading="lazy" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:cover;transition:transform .4s">
+        <img src="${a.imgs[0]}" alt="${titleTxt}" loading="lazy" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:cover;transition:transform .4s">
         <div class="amenity-photo-bg" style="background:${a.bg};display:none" id="abg${i}">${a.emoji}</div>
         <div class="amenity-photo-overlay"></div>
         <span class="amenity-badge">${badgeTxt}</span>
@@ -461,7 +465,6 @@ function renderAmenities() {
       document.getElementById('abg'+i).style.display='flex';
     });
     card.addEventListener('click',()=>openModal({
-      img: a.img,
       imgs: a.imgs,
       name: titleTxt,
       desc: descTxt,
@@ -622,11 +625,13 @@ function renderCards(){
 }
 
 let modalImageIndex=0;let modalImages=[];
+let dragStartX=0;let dragEndX=0;
+
 function openModal(p){
   const modal = document.getElementById('modal');
   modal.classList.toggle('image-only', !!p.imageOnly);
   const img=document.getElementById('mImg'), fb=document.getElementById('mFallback');
-  modalImages=p.imgs||[p.img];
+  modalImages=p.imgs||[];
   modalImageIndex=0;
   img.style.display='block';fb.style.display='none';
   img.src=modalImages[0];img.alt=p.name||'';
@@ -660,8 +665,39 @@ function openModal(p){
     routeWrap.style.display='none';
   }
   modal.classList.add('open');
+  setupImageSwipe();
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
+function setupImageSwipe(){
+  const img=document.getElementById('mImg');
+  dragStartX=0;dragEndX=0;
+  img.addEventListener('mousedown',onImageDragStart,false);
+  img.addEventListener('touchstart',onImageDragStart,false);
+  img.addEventListener('mousemove',onImageDragMove,false);
+  img.addEventListener('touchmove',onImageDragMove,false);
+  img.addEventListener('mouseup',onImageDragEnd,false);
+  img.addEventListener('touchend',onImageDragEnd,false);
+  img.addEventListener('mouseleave',onImageDragEnd,false);
+}
+function onImageDragStart(e){
+  if(modalImages.length<2)return;
+  dragStartX=e.type.includes('touch')?e.touches[0].clientX:e.clientX;
+  dragEndX=dragStartX;
+  document.getElementById('mImg').classList.add('dragging');
+}
+function onImageDragMove(e){
+  if(dragStartX===0)return;
+  dragEndX=e.type.includes('touch')?e.touches[0].clientX:e.clientX;
+}
+function onImageDragEnd(e){
+  if(dragStartX===0||modalImages.length<2){dragStartX=0;dragEndX=0;return;}
+  document.getElementById('mImg').classList.remove('dragging');
+  const diff=dragStartX-dragEndX;
+  if(Math.abs(diff)>50){
+    if(diff>0){nextImage();}else{prevImage();}
+  }
+  dragStartX=0;dragEndX=0;
+}
 function updateModalImage(){
   const img=document.getElementById('mImg');
   const fb=document.getElementById('mFallback');
@@ -679,7 +715,11 @@ function nextImage(){
   modalImageIndex=(modalImageIndex+1)%modalImages.length;
   updateModalImage();
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeAdmin();}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeModal();closeAdmin();}
+  if(e.key==='ArrowLeft' && modalImages.length>1 && document.getElementById('modal').classList.contains('open')){prevImage();}
+  if(e.key==='ArrowRight' && modalImages.length>1 && document.getElementById('modal').classList.contains('open')){nextImage();}
+});
 
 const tt=document.getElementById('distTooltip');
 function showTip(e,t){tt.textContent=t;tt.classList.add('show');moveTip(e);}
