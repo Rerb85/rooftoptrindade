@@ -224,6 +224,11 @@ footer strong{color:rgba(255,255,255,.65);}
     <div class="modal-img-wrap">
       <img id="mImg" class="modal-img" src="" alt="" onerror="this.style.display='none';document.getElementById('mFallback').style.display='flex'">
       <div id="mFallback" class="modal-fallback"></div>
+      <div id="mImgNav" class="modal-img-nav" style="display:none">
+        <button onclick="prevImage()" class="modal-nav-btn">‹</button>
+        <span id="mImgCount" class="modal-img-count">1/1</span>
+        <button onclick="nextImage()" class="modal-nav-btn">›</button>
+      </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
@@ -376,6 +381,7 @@ const amenities = [
     desc:{pt:'Mesa de jantar que se transforma em mesa de bilhar. Equipada com fogão à lenha, braseiro e forno à lenha — ideal para reunir amigos e fazer aquela carne no ponto certo.',en:'Dining table that converts to a billiard table. Wood stove, grill and wood-fired oven — perfect for gathering friends and grilling to perfection.'},
     bg:'linear-gradient(135deg,#1a1a1a,#3d2200)',
     img:'https://uc0cc72865d31d3bcdbb9a0a46fa.previews.dropboxusercontent.com/p/thumb/AC8FkJysTU9wIX8jj-FMXo1Cb8h7BWkNERKq_YnJ3Sh9C7Ebnp-w-EII4qlWYml9FlPsiRYw9BwkJkyOwIcU6bEHDoUESPzXufQsw28EoSeWX-cXSOPmtQDqzrEUFYSA8IicbjVulvtcR3UHKWFY5cAJ46h2Cfg_j6olBiMhF7vitnQ7O4wDqdU2ihGsX5jvSSJFFR3-CRz1wR-G6dfXZ1IhFjcWR53R8Xj-uy7yVf8Ky73v2h2WUPQ1m0j8OM43uyLV-ELgNKFprGljx5myKlPL7Wdpjb3jBQUaq-VWfE619pcGMjVWIL-Wmk8rL_9ZVQKBNFzd2LGOlD2a8EQPIwnc4g_zOyh8ijpP7R3ybVsUkq-BgqIL9bVwKMgCCAGS2LYzHuyluKFkeGSVuZ7FbpqX/p.jpeg?is_prewarmed=true',
+    imgs:['https://uc0cc72865d31d3bcdbb9a0a46fa.previews.dropboxusercontent.com/p/thumb/AC8FkJysTU9wIX8jj-FMXo1Cb8h7BWkNERKq_YnJ3Sh9C7Ebnp-w-EII4qlWYml9FlPsiRYw9BwkJkyOwIcU6bEHDoUESPzXufQsw28EoSeWX-cXSOPmtQDqzrEUFYSA8IicbjVulvtcR3UHKWFY5cAJ46h2Cfg_j6olBiMhF7vitnQ7O4wDqdU2ihGsX5jvSSJFFR3-CRz1wR-G6dfXZ1IhFjcWR53R8Xj-uy7yVf8Ky73v2h2WUPQ1m0j8OM43uyLV-ELgNKFprGljx5myKlPL7Wdpjb3jBQUaq-VWfE619pcGMjVWIL-Wmk8rL_9ZVQKBNFzd2LGOlD2a8EQPIwnc4g_zOyh8ijpP7R3ybVsUkq-BgqIL9bVwKMgCCAGS2LYzHuyluKFkeGSVuZ7FbpqX/p.jpeg?is_prewarmed=true','https://ucda1c3e3612f5fbac6d2e64fa02.previews.dropboxusercontent.com/p/thumb/AC-5vucl7zqpqKuRkTtWvAislfbn_eZ56SzHjWw3mm4O0_qcEiOoJepm2bI3oxduG-GcYapRwNEEAE67ycVcM8WvB8PbqJvn6-LPRiTEWkA6Gx3X9He7zcBw2rnunxqw5BBuKec6Amu1OyhqdYc8lQPDKG0LPMhlFSZfc4SWdaxmNiv1xGaDffs679iVoAOpRCccjYoqoAF-cSvyCyIBtsjtVZ4JjKaZUSSDP2nQJXHiHz5hCI8ow2yvuqjqK7Zti4dU9WseSnlpqe18aLL6j9RFBch3Hmu0V1NBiYrDVumlxn273fiBoOksvghqT7n6tOto9ce9VjB1HbDhxyqYgqVhloVDuVEv7E6IbU7lbWN3dbt3TR9Jvph4puoqJnu9Wpx4G6MmSykuMqqUNOiFaD8-/p.jpeg?is_prewarmed=true'],
     imageOnly: true },
   { emoji:'🛋️', badge:{pt:'Sala de Estar',en:'Living Room'},
     title:{pt:'Sala com Cantinho do Café',en:'Living Room & Coffee Nook'},
@@ -450,6 +456,7 @@ function renderAmenities() {
     });
     card.addEventListener('click',()=>openModal({
       img: a.img,
+      imgs: a.imgs,
       name: titleTxt,
       desc: descTxt,
       tag: a.badge,
@@ -608,12 +615,17 @@ function renderCards(){
   });
 }
 
+let modalImageIndex=0;let modalImages=[];
 function openModal(p){
   const modal = document.getElementById('modal');
   modal.classList.toggle('image-only', !!p.imageOnly);
   const img=document.getElementById('mImg'), fb=document.getElementById('mFallback');
+  modalImages=p.imgs||[p.img];
+  modalImageIndex=0;
   img.style.display='block';fb.style.display='none';
-  img.src=p.img;img.alt=p.name||'';
+  img.src=modalImages[0];img.alt=p.name||'';
+  const navPanel=document.getElementById('mImgNav');
+  if(navPanel){navPanel.style.display=modalImages.length>1?'flex':'none';document.getElementById('mImgCount').textContent=`${modalImageIndex+1}/${modalImages.length}`;}
   const catText = p.tag? (p.tag[lang]||p.tag.pt) : '';
   document.getElementById('mCat').textContent = catText;
   document.getElementById('mCat').style.color = p.cat? catColors[p.cat] : 'var(--ocean-deep)';
@@ -642,9 +654,25 @@ function openModal(p){
     routeWrap.style.display='none';
   }
   modal.classList.add('open');
-  modal.classList.add('open');
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
+function updateModalImage(){
+  const img=document.getElementById('mImg');
+  const fb=document.getElementById('mFallback');
+  img.style.display='block';fb.style.display='none';
+  img.src=modalImages[modalImageIndex];
+  document.getElementById('mImgCount').textContent=`${modalImageIndex+1}/${modalImages.length}`;
+}
+function prevImage(){
+  if(modalImages.length<2) return;
+  modalImageIndex=(modalImageIndex-1+modalImages.length)%modalImages.length;
+  updateModalImage();
+}
+function nextImage(){
+  if(modalImages.length<2) return;
+  modalImageIndex=(modalImageIndex+1)%modalImages.length;
+  updateModalImage();
+}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeAdmin();}});
 
 const tt=document.getElementById('distTooltip');
