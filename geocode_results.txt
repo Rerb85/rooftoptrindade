@@ -1,0 +1,73 @@
+Ostradamus	-27.7706	-48.5572	->	-27.7200990	-48.5642040	Ostradamus, 7640, Rodovia Baldicero Filomeno, Freguesia do Ribeirão, Florianópolis, Santa Catarina, Região Sul, 88064-002, Brasil
+Bar do Arante	-27.7869	-48.5048	->	-27.7818170	-48.5081292	Bar do Arante, 254, Rua Abelardo Otacílio Gomes, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, 88067-102, Brasil
+Toca da Garoupa	-27.5903	-48.4617	->	NORESULT
+Via Gastronômica de Coqueiros	-27.5865	-48.5395	->	-27.6102621	-48.5793300	Avenida Engenheiro Max de Souza, Coqueiros, Florianópolis, Santa Catarina, Região Sul, 88080-350, Brasil
+  alt -> -27.6073151	-48.5782740	Avenida Engenheiro Max de Souza, Coqueiros, Florianópolis, Santa Catarina, Região Sul, 88080-150, Brasil
+  alt -> -27.6126950	-48.5833748	Rua Desembargador Pedro Silva, Coqueiros, Florianópolis, Santa Catarina, Região Sul, 88080-700, Brasil
+Via Gastronômica do Santa Mônica	-27.5950	-48.5195	->	NORESULT
+Jurerê Internacional	-27.4370	-48.4961	->	-27.4402665	-48.5027484	Jurerê Internacional, Jurerê, Canasvieiras, Florianópolis, Santa Catarina, Região Sul, 88053-301, Brasil
+Praia da Joaquina	-27.6437	-48.4389	->	-27.6343625	-48.4542951	Praia da Joaquina, Dunas da Lagoa, Lagoa da Conceição, Florianópolis, Santa Catarina, Região Sul, Brasil
+Lagoa da Conceição	-27.5928	-48.4575	->	-27.5697194	-48.4515809	Lagoa da Conceição, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.6032376	-48.4653948	Lagoa da Conceição, Florianópolis, Santa Catarina, Região Sul, Brasil
+Praia dos Ingleses	-27.4365	-48.3990	->	-27.4294468	-48.3965338	Praia dos Ingleses, Ingleses Norte, Ingleses do Rio Vermelho, Florianópolis, Santa Catarina, Região Sul, Brasil
+Praia da Armação	-27.7476	-48.5023	->	-27.7360351	-48.5079032	Praia da Armação, Restinga do Peri, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, Brasil
+Praia do Matadeiro	-27.7605	-48.4981	->	-27.7543668	-48.4989504	Praia do Matadeiro, Armação do Pântano do Sul, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, Brasil
+Pântano do Sul	-27.7869	-48.5057	->	-27.7798797	-48.5072329	Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.7798797	-48.5072329	Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, Brasil
+Praia de Naufragados	-27.8138	-48.4756	->	NORESULT
+Lagoa do Peri	-27.7380	-48.5090	->	-27.7325953	-48.5257438	Lagoa do Peri, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.7290476	-48.5390149	Lagoa do Peri, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.7395849	-48.5135663	Lagoa do Peri, Armação do Pântano do Sul, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, 88066-355, Brasil
+Morro das Pedras	-27.7080	-48.4820	->	-27.7109292	-48.5031163	Morro das Pedras, Florianópolis, Santa Catarina, Região Sul, 88066-070, Brasil
+  alt -> -27.7132851	-48.5083559	Morro das Pedras, Florianópolis, Santa Catarina, Região Sul, Brasil
+Cachoeira do Bom Jesus	-27.4680	-48.4280	->	-27.4265307	-48.4236749	Cachoeira do Bom Jesus, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.4265307	-48.4236749	Cachoeira do Bom Jesus, Florianópolis, Santa Catarina, Região Sul, Brasil
+Canasvieiras	-27.4270	-48.4720	->	-27.4295668	-48.4602439	Canasvieiras, Florianópolis, Santa Catarina, Região Sul, Brasil
+Ponta das Canas	-27.4255	-48.4290	->	-27.3964294	-48.4274285	Ponta das Canas, Cachoeira do Bom Jesus, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.3931834	-48.4359312	Ponta das Canas, Cachoeira do Bom Jesus, Florianópolis, Santa Catarina, Região Sul, 88056-720, Brasil
+Praia Brava	-27.4299	-48.4355	->	-27.3976128	-48.4158254	Praia Brava, Cachoeira do Bom Jesus, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.3992523	-48.4137268	Praia Brava, Cachoeira do Bom Jesus, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.3979935	-48.4165819	Praia Brava, Avenida Tom Traugott Wildi, Praia Brava, Cachoeira do Bom Jesus, Florianópolis, Santa Catarina, Região Sul, 88056-780, Brasil
+Lagoinha do Norte	-27.4200	-48.4440	->	-27.3902923	-48.4256691	Lagoinha do Norte, Ponta das Canas, Cachoeira do Bom Jesus, Florianópolis, Santa Catarina, Região Sul, 88056-762, Brasil
+Praia do Campeche	-27.6110	-48.4560	->	-27.6859258	-48.4803787	Praia do Campeche, Campeche, Florianópolis, Santa Catarina, Região Sul, Brasil
+Praia da Daniela	-27.4290	-48.4315	->	-27.4488738	-48.5383758	Praia da Daniela, Daniela, Canasvieiras, Florianópolis, Santa Catarina, Região Sul, Brasil
+Praia dos Açores	-27.4340	-48.4355	->	-27.7854502	-48.5256856	Praia dos Açores, Açores, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, Brasil
+Praia da Solidão	-27.7550	-48.4940	->	-27.7942829	-48.5335810	Praia do Rio das Pacas, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, Brasil
+Trilha da Cachoeira da Solidão	-27.7550	-48.4940	->	-27.7946502	-48.5367431	Trilha Cachoeira da Solidão, Solidão, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, 88066-600, Brasil
+Trilha da Lagoinha do Leste	-27.7980	-48.4860	->	-27.7786867	-48.4972692	Trilha da Lagoinha do Leste, Lagoinha do Leste, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, 88067-079, Brasil
+  alt -> -27.7789918	-48.5062507	Trilha da Lagoinha do Leste, Lagoinha do Leste, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, 88067-079, Brasil
+Trilha da Lagoinha do Leste	-27.7980	-48.4860	->	-27.7786867	-48.4972692	Trilha da Lagoinha do Leste, Lagoinha do Leste, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, 88067-079, Brasil
+  alt -> -27.7789918	-48.5062507	Trilha da Lagoinha do Leste, Lagoinha do Leste, Pântano do Sul, Florianópolis, Santa Catarina, Região Sul, 88067-079, Brasil
+Trilha de Naufragados	-27.8050	-48.4820	->	-27.8247249	-48.5610239	Trilha de Naufragados, Naufragados, Florianópolis, Santa Catarina, Região Sul, 88066-600, Brasil
+Costa da Lagoa	-27.5670	-48.4720	->	-27.5431463	-48.4609777	Costa da Lagoa, Florianópolis, Santa Catarina, Região Sul, 88060-000, Brasil
+Morro da Cruz	-27.5978	-48.5265	->	-27.5901153	-48.5326249	Morro da Cruz, Florianópolis, Santa Catarina, Região Sul, 88020-420, Brasil
+  alt -> -27.5940149	-48.5396436	Morro da Cruz, Florianópolis, Santa Catarina, Região Sul, Brasil
+Parque Maciço da Costeira	-27.6480	-48.5080	->	NORESULT
+Trilha da Prainha	-27.5626	-48.4256	->	NORESULT
+Mercado Público	-27.5940	-48.5487	->	-27.5973289	-48.5530600	Mercado Público Aldírio Simões, 60, Rua Jerônimo Coelho, Centro, Florianópolis, Santa Catarina, Região Sul, 88010-030, Brasil
+Forte de São José da Ponta Grossa	-27.4383	-48.5356	->	-27.4315348	-48.5178891	Fortaleza de São José da Ponta Grossa, Trilha Centenária, Praia do Forte, Canasvieiras, Florianópolis, Santa Catarina, Região Sul, 88053-306, Brasil
+Mirante da Lagoa da Conceição	-27.5720	-48.4740	->	-27.6009110	-48.4813096	Mirante da Lagoa da Conceição, Rodovia Admar Gonzaga, Itacorubi, Lagoa da Conceição, Florianópolis, Santa Catarina, Região Sul, 88062-201, Brasil
+Ponte Hercílio Luz	-27.5980	-48.5480	->	-27.5938202	-48.5654433	Ponte Hercílio Luz, Avenida Cláudio Alvin Barbosa (Poeta Zininho), Estreito, Florianópolis, Santa Catarina, Região Sul, 88080-010, Brasil
+  alt -> -27.5939119	-48.5658645	Ponte Hercílio Luz, Centro, Estreito, Florianópolis, Santa Catarina, Região Sul, 88015-201, Brasil
+  alt -> -27.5929123	-48.5616090	Ponte Hercílio Luz, Centro, Florianópolis, Santa Catarina, Região Sul, 88010-220, Brasil
+Santo Antônio de Lisboa	-27.5106	-48.5450	->	-27.5061508	-48.5188698	Santo Antônio de Lisboa, Florianópolis, Santa Catarina, Região Sul, Brasil
+Sambaqui	-27.4830	-48.5430	->	-27.4924025	-48.5268313	Sambaqui, Santo Antônio de Lisboa, Florianópolis, Santa Catarina, Região Sul, 88051-001, Brasil
+  alt -> -27.5726976	-48.4219140	Sambaqui, Beco dos Extrangeiros, Barra da Lagoa, Florianópolis, Santa Catarina, Região Sul, 88061-090, Brasil
+  alt -> -27.4861929	-48.5252662	Morro da Barra do Sambaqui, Florianópolis, Santa Catarina, Região Sul, 88051-001, Brasil
+Cacupé	-27.5320	-48.5480	->	-27.5372014	-48.5245568	Cacupé, Santo Antônio de Lisboa, Florianópolis, Santa Catarina, Região Sul, 88032-005, Brasil
+P12 Parador	-27.4378	-48.4978	->	-27.4331337	-48.5141728	Parador 12, Servidão José Cardoso de Oliveira, Canasvieiras, Florianópolis, Santa Catarina, Região Sul, 88053-306, Brasil
+Fortaleza de Anhatomirim	-27.5040	-48.5600	->	NORESULT
+Parque Ecológico do Córrego Grande	-27.5740	-48.4750	->	-27.5965840	-48.5101982	Parque Ecológico do Córrego Grande, Trindade, Florianópolis, Santa Catarina, Região Sul, Brasil
+Jardim Botânico	-27.6092	-48.4815	->	-27.5820252	-48.5083979	Jardim Botânico de Florianópolis Major Antônio José de Freitas Noronha, Trindade, Florianópolis, Santa Catarina, Região Sul, 88034-000, Brasil
+  alt -> -27.5795934	-48.5076559	Jardim Botânico de Florianópolis, Servidão Rodolfo Rodrigues Feijó, Itacorubi, Trindade, Florianópolis, Santa Catarina, Região Sul, 88034-170, Brasil
+Ribeirão da Ilha	-27.7710	-48.5620	->	-27.7090030	-48.5586078	Ribeirão da Ilha, Florianópolis, Santa Catarina, Região Sul, 88064-400, Brasil
+Beira Mar Norte	-27.5450	-48.5520	->	-27.5786051	-48.5241351	Avenida Governador Irineu Bornhausen, Agronômica, Florianópolis, Santa Catarina, Região Sul, 88036-000, Brasil
+  alt -> -27.5898347	-48.5620589	Mirante da Beira Mar, Avenida Osvaldo Rodrigues Cabral, Centro, Florianópolis, Santa Catarina, Região Sul, 88015-710, Brasil
+  alt -> -27.5874677	-48.5194956	Beira Mar 003, Avenida Professor Henrique da Silva Fontes, Trindade, Florianópolis, Santa Catarina, Região Sul, 88036-270, Brasil
+Projeto Tamar	-27.5626	-48.4256	->	-27.5720844	-48.4277756	Projeto TAMAR Florianópolis, Rua Professor Ademir Francisco, Barra da Lagoa, Florianópolis, Santa Catarina, Região Sul, 88061-150, Brasil
+Beiramar Shopping	-27.6023	-48.5455	->	-27.5847787	-48.5450486	Beiramar Shopping, 2468, Rua Bocaiúva, Centro, Florianópolis, Santa Catarina, Região Sul, 88015-902, Brasil
+Shopping Villa Romana	-27.5876	-48.5167	->	-27.5899915	-48.5150004	Villa Romana Shopping, 687, Avenida Madre Benvenuta, Trindade, Florianópolis, Santa Catarina, Região Sul, 88035-000, Brasil
+John Bull Pub	-27.5944	-48.5474	->	-27.6083760	-48.4539260	John Bull Layback, 1046, Avenida das Rendeiras, Dunas da Lagoa, Lagoa da Conceição, Florianópolis, Santa Catarina, Região Sul, 88062-400, Brasil
+Jurerê Beach Village	-27.4378	-48.4978	->	-27.4389624	-48.4895904	Jurerê Beach Village, 646, Rua César Nascimento, Loteamento Praia do Forte, Jurerê Leste, Canasvieiras, Florianópolis, Santa Catarina, Região Sul, 88053-500, Brasil
+Barra da Lagoa	-27.5696	-48.4295	->	-27.5747780	-48.4258352	Barra da Lagoa, Florianópolis, Santa Catarina, Região Sul, Brasil
+  alt -> -27.5747780	-48.4258352	Barra da Lagoa, Florianópolis, Santa Catarina, Região Sul, Brasil
