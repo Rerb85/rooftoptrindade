@@ -95,7 +95,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 .map-err{display:none;position:absolute;inset:0;background:var(--sand);align-items:center;justify-content:center;flex-direction:column;gap:10px;z-index:998;font-size:15px;color:var(--text-muted);}
 .places-section{max-width:1100px;margin:0 auto;padding:0 24px;}
 .places-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:18px;}
-.place-card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 18px rgba(0,0,0,.07);transition:all .3s;cursor:pointer;border:1px solid rgba(0,0,0,.05);opacity:0;transform:translateY(14px);animation:cardIn .5s ease forwards;}
+.load-more-wrap{display:flex;justify-content:center;padding:24px 0 0;}
+.load-more-wrap .btn{min-width:160px;}
+.place-card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 18px rgba(0,0,0,.07);transition:transform .3s,box-shadow .3s;cursor:pointer;border:1px solid rgba(0,0,0,.05);opacity:0;transform:translateY(14px);
+}
+.place-card.show{animation:cardIn .45s ease forwards;}
 .place-card:hover{transform:translateY(-4px);box-shadow:0 12px 38px rgba(0,0,0,.13);}
 @keyframes cardIn{to{opacity:1;transform:translateY(0);}}
 .card-head{height:148px;position:relative;display:flex;align-items:flex-end;padding:12px;overflow:hidden;}
@@ -328,7 +332,10 @@ Além da vantagem logística, o bairro Trindade é conhecido por sua vida jovem 
       </div>
     </div>
   </div>
-  <div class="places-section"><div class="places-grid" id="placesGrid"></div></div>
+  <div class="places-section">
+    <div class="places-grid" id="placesGrid"></div>
+    <div class="load-more-wrap"><button id="loadMoreBtn" class="btn btn-primary" type="button">Ver mais</button></div>
+  </div>
 </main>
 
 <!-- ══════════ TIPS ══════════ -->
@@ -578,6 +585,23 @@ const places = [
 ];
 
 let currentCat='all';
+let placesVisibleCount=4;
+
+function updateMoreButton(totalCount){
+  const btn = document.getElementById('loadMoreBtn');
+  if(!btn) return;
+  if(totalCount<=placesVisibleCount){
+    btn.style.display='none';
+    return;
+  }
+  btn.style.display='inline-flex';
+  btn.textContent = lang==='pt' ? 'Ver mais' : 'See more';
+}
+
+function showMorePlaces(){
+  placesVisibleCount += 4;
+  renderCards();
+}
 
 function haversine(la1,lo1,la2,lo2){
   const R=6371,dL=(la2-la1)*Math.PI/180,dG=(lo2-lo1)*Math.PI/180;
@@ -590,8 +614,10 @@ function renderCards(){
   const grid=document.getElementById('placesGrid');
   const filtered=currentCat==='all'?places:places.filter(p=>p.cat===currentCat);
   const sorted=[...filtered].sort((a,b)=>haversine(HOME_LAT,HOME_LNG,a.lat,a.lng)-haversine(HOME_LAT,HOME_LNG,b.lat,b.lng));
+  const totalCount = sorted.length;
+  const visible = sorted.slice(0, placesVisibleCount);
   grid.innerHTML='';
-  sorted.forEach((p,i)=>{
+  visible.forEach((p,i)=>{
     const dist=haversine(HOME_LAT,HOME_LNG,p.lat,p.lng);
     const c=catColors[p.cat];
     const tagTxt=p.tag[lang]||p.tag.pt;
@@ -629,6 +655,7 @@ function renderCards(){
     if(routeLink) routeLink.addEventListener('click',e=>e.stopPropagation());
     grid.appendChild(card);
   });
+  updateMoreButton(totalCount);
 }
 
 let modalImageIndex=0;let modalImages=[];
@@ -736,7 +763,9 @@ function hideTip(){tt.classList.remove('show');}
 document.getElementById('catTabs').addEventListener('click',e=>{
   const tab=e.target.closest('.cat-tab');if(!tab)return;
   document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
-  tab.classList.add('active');currentCat=tab.dataset.cat;
+  tab.classList.add('active');
+  currentCat=tab.dataset.cat;
+  placesVisibleCount = 4;
   renderMarkers();renderCards();
 });
 
@@ -961,6 +990,8 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderAmenities();
   initMap();
   loadInv();
+  const loadMore = document.getElementById('loadMoreBtn');
+  if(loadMore){loadMore.addEventListener('click',showMorePlaces);}
 });
 </script>
 </body>
