@@ -97,11 +97,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 .places-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:18px;}
 .load-more-wrap{display:flex;justify-content:center;padding:24px 0 0;}
 .load-more-wrap .btn{min-width:160px;}
-.place-card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 18px rgba(0,0,0,.07);transition:transform .3s,box-shadow .3s;cursor:pointer;border:1px solid rgba(0,0,0,.05);opacity:0;transform:translateY(14px);
-}
-.place-card.show{animation:cardIn .45s ease forwards;}
+.place-card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 18px rgba(0,0,0,.07);transition:transform .3s,box-shadow .3s;cursor:pointer;border:1px solid rgba(0,0,0,.05);}
+.place-card.animate-in{animation:cardIn .45s ease both;}
 .place-card:hover{transform:translateY(-4px);box-shadow:0 12px 38px rgba(0,0,0,.13);}
-@keyframes cardIn{to{opacity:1;transform:translateY(0);}}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 .card-head{height:148px;position:relative;display:flex;align-items:flex-end;padding:12px;overflow:hidden;}
 .card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s;}
 .place-card:hover .card-img{transform:scale(1.05);}
@@ -287,9 +286,8 @@ footer strong{color:rgba(255,255,255,.65);}
 
 <!-- ══════════ LOCALIZAÇÃO ══════════ -->
 <section class="welcome-strip">
-  <h2>Você está no <em>Lugar Certo</em></h2>
-  <p>O rooftop Trindade situa-se bem no centro físico da Ilha de Santa Catarina, estando a 31 km da extremidade norte(Praia da Lagoinha do Norte) e a 33 km da extremidade sul(praia de Naufragados), sendo, por tanto, um estratégico ponto de apoio a quem deseja explorar as riquezas e peculiaridades de todas as regiões da ilha, suas mais de 40 praias e 40 trilhas. 
-Além da vantagem logística, o bairro Trindade é conhecido por sua vida jovem e animada, segurança e serviços diversos a poucos passos de distância. A 5 min do centro, vizinho à Universidade Federal,  próximo ao shopping Villa Romana, e via gastronômica do Santa Mônica, a pouco metros do Trindade Shopping, Viva Trindade Mall, supermercados Ângeloni e Imperatriz, perto de parques, horto e jardim botânico. Aqui você terá em seu entorno a melhor infraestrutura da cidade!</p>
+  <h2><span class="i18n" data-pt="Você está no" data-en="You are in">Você está no</span> <em><span class="i18n" data-pt="Lugar Certo" data-en="Right Place">Lugar Certo</span></em></h2>
+  <p class="i18n" data-pt="O Rooftop Trindade situa-se bem no centro físico da Ilha de Santa Catarina, estando a 31 km da extremidade norte (Praia da Lagoinha do Norte) e a 33 km da extremidade sul (Praia de Naufragados), sendo, portanto, um estratégico ponto de apoio a quem deseja explorar as riquezas e peculiaridades de todas as regiões da ilha, suas mais de 40 praias e 40 trilhas. Além da vantagem logística, o bairro Trindade é conhecido por sua vida jovem e animada, segurança e serviços diversos a poucos passos de distância. A 5 min do centro, vizinho à Universidade Federal, próximo ao Shopping Villa Romana e à via gastronômica do Santa Mônica, a poucos metros do Trindade Shopping, Viva Trindade Mall, supermercados Angeloni e Imperatriz, perto de parques, horto e jardim botânico. Aqui você terá em seu entorno a melhor infraestrutura da cidade!" data-en="The Rooftop Trindade is well-positioned in the physical center of the Magic Island, being 31 km from the northern tip (Praia da Lagoinha do Norte) and 33 km from the southern tip (Praia de Naufragados), making it a strategic hub for exploring the island's riches and unique features, with over 40 beaches and 40 trails. In addition to its logistical advantage, the Trindade neighborhood is known for its young and vibrant life, security, and diverse services just steps away. Just 5 minutes from the city center, it's next to the Federal University, close to Villa Romana Shopping and the Santa Mônica gastronomic street, within a few meters of Trindade Shopping and Viva Trindade Mall, with supermarkets like Angeloni and Imperatriz nearby, along with parks, a botanical garden and an orchard. Here you will have the best infrastructure in town!">O Rooftop Trindade situa-se bem no centro físico da Ilha de Santa Catarina, estando a 31 km da extremidade norte (Praia da Lagoinha do Norte) e a 33 km da extremidade sul (Praia de Naufragados), sendo, portanto, um estratégico ponto de apoio a quem deseja explorar as riquezas e peculiaridades de todas as regiões da ilha, suas mais de 40 praias e 40 trilhas. Além da vantagem logística, o bairro Trindade é conhecido por sua vida jovem e animada, segurança e serviços diversos a poucos passos de distância. A 5 min do centro, vizinho à Universidade Federal, próximo ao Shopping Villa Romana e à via gastronômica do Santa Mônica, a poucos metros do Trindade Shopping, Viva Trindade Mall, supermercados Angeloni e Imperatriz, perto de parques, horto e jardim botânico. Aqui você terá em seu entorno a melhor infraestrutura da cidade!</p>
 </section>
 
 <!-- ══════════ STRUCTURE ══════════ -->
@@ -334,7 +332,7 @@ Além da vantagem logística, o bairro Trindade é conhecido por sua vida jovem 
   </div>
   <div class="places-section">
     <div class="places-grid" id="placesGrid"></div>
-    <div class="load-more-wrap"><button id="loadMoreBtn" class="btn btn-primary" type="button">Ver mais</button></div>
+    <div class="load-more-wrap"><button id="loadMoreBtn" class="btn btn-primary" type="button" style="display:none">Ver mais</button></div>
   </div>
 </main>
 
@@ -594,8 +592,9 @@ function updateMoreButton(totalCount){
     btn.style.display='none';
     return;
   }
+  const remaining = Math.min(4, totalCount - placesVisibleCount);
   btn.style.display='inline-flex';
-  btn.textContent = lang==='pt' ? 'Ver mais' : 'See more';
+  btn.textContent = lang==='pt' ? `Ver mais ${remaining} →` : `See ${remaining} more →`;
 }
 
 function showMorePlaces(){
@@ -628,8 +627,8 @@ function renderCards(){
     if(p.pills){const arr=p.pills[lang]||p.pills.pt;pillsHtml=`<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px">${arr.map(t=>`<span style="background:${c}18;color:${c};font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px">${t}</span>`).join('')}</div>`;}
     const routeUrl = `https://www.google.com/maps/place/${p.lat},${p.lng}`;
     const card=document.createElement('div');
-    card.className='place-card';
-    card.style.animationDelay=`${i*.05}s`;
+    card.className='place-card animate-in';
+    card.style.animationDelay=`${i*.07}s`;
     card.innerHTML=`
       <div class="card-head" style="background:${bgMap[p.cat]}">
         <img class="card-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -800,7 +799,7 @@ async function loadInv(){
 
 function getDefaultItems(){
   return [
-    {id:1,name:'Smart TV 65"',cat:'Eletrônico',qty:1,cond:'Ótimo',notes:'Samsung, controle na gaveta da estante',photo:''},
+    {id:1,name:'Smart TV 65"',cat:'Eletrônico',qty:1,cond:'Ótimo',notes:'TCL, modelo 65C6K 120hz',photo:['images/tv.jpg']},
     {id:2,name:'Geladeira Frost Free',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Haier Inox',photo:''},
     {id:3,name:'Máquina de Lavar',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Samsung Lava e Seca, área de serviço',photo:''},
     {id:4,name:'Ar Condicionado Inverter',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Quarto, controle no painel',photo:''},
