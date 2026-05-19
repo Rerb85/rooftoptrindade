@@ -183,34 +183,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);o
 .inv-loading{text-align:center;padding:40px;color:var(--text-muted);}
 
 /* ADMIN BTN */
-.btn-whatsapp-inv{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 24px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:all .3s;box-shadow:0 4px 18px rgba(37,211,102,.3);}
-.btn-whatsapp-inv:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.4);}
-.inv-checklist{display:flex;flex-direction:column;gap:0;border-radius:16px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.07);}
-.inv-check-item{display:flex;align-items:center;gap:0;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);transition:background .2s;cursor:pointer;}
-.inv-check-item:last-child{border-bottom:none;}
-.inv-check-item.checked{background:#f0fdf4;}
-.inv-check-item.checked .inv-check-name{text-decoration:line-through;color:#aaa;}
-.inv-check-thumb{width:72px;height:72px;flex-shrink:0;overflow:hidden;background:#f5f5f5;cursor:pointer;position:relative;}
-.inv-check-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
-.inv-check-thumb:hover img{transform:scale(1.08);}
-.inv-check-thumb .no-photo{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:26px;}
-.inv-check-toggle{width:56px;height:72px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-right:1px solid rgba(0,0,0,.06);}
-.inv-check-box{width:24px;height:24px;border-radius:7px;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;transition:all .25s;background:#fff;}
-.inv-check-item.checked .inv-check-box{background:#22c55e;border-color:#22c55e;}
-.inv-check-item.checked .inv-check-box::after{content:'✓';color:#fff;font-size:15px;font-weight:700;}
-.inv-check-body{flex:1;padding:12px 14px;min-width:0;}
-.inv-check-name{font-size:15px;font-weight:600;color:var(--ocean-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.inv-check-meta{font-size:12px;color:var(--text-muted);margin-top:3px;}
-.inv-check-cond{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:100px;margin-top:5px;}
-.cond-otimo{background:#d1fae5;color:#065f46;}
-.cond-bom{background:#fef9c3;color:#854d0e;}
-.cond-regular{background:#fee2e2;color:#991b1b;}
-.inv-progress-bar{height:8px;background:#e5e7eb;border-radius:100px;overflow:hidden;margin-bottom:8px;}
-.inv-progress-fill{height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:100px;transition:width .4s ease;}
-.inv-progress-label{font-size:13px;color:var(--text-muted);text-align:right;}
-.inv-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:30000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;cursor:zoom-out;}
-.inv-lightbox.open{opacity:1;visibility:visible;}
-.inv-lightbox img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,.5);}
+.btn-admin{background:var(--ocean-deep);color:#e0e0e0;padding:10px 22px;border-radius:100px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .3s;}
+.btn-admin:hover{background:var(--ocean);}
+.btn-admin.admin-active{background:var(--accent);color:#1a1a1a;}
 
 /* ADMIN MODAL */
 .admin-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:20000;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;visibility:hidden;transition:all .3s;backdrop-filter:blur(5px);}
@@ -283,6 +258,13 @@ footer strong{color:rgba(255,255,255,.65);}
 </div>
 
 <!-- ── ADMIN LOGIN MODAL ── -->
+<div class="admin-ov" id="adminModal" onclick="if(event.target===this)closeAdmin()">
+  <div class="admin-box" id="adminBox">
+    <div class="admin-title" id="adminBoxTitle">🔐 Área Administrativa</div>
+    <div id="adminContent"></div>
+  </div>
+</div>
+
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
   <p class="hero-badge i18n" data-pt="✦ Bem-vindo à sua casa na ilha" data-en="✦ Welcome to your island home">✦ Bem-vindo à sua casa na ilha</p>
@@ -369,25 +351,16 @@ footer strong{color:rgba(255,255,255,.65);}
 
 <!-- ══════════ INVENTORY ══════════ -->
 <section class="inventory-section" id="inventario">
-  <div class="inv-header" style="flex-direction:column;align-items:flex-start;gap:12px">
+  <div class="inv-header">
     <div>
-      <p class="sec-label i18n" data-pt="Conferência no Check-in e Check-out" data-en="Check-in & Check-out Checklist">Conferência no Check-in e Check-out</p>
+      <p class="sec-label i18n" data-pt="Conferência no Checkout" data-en="Checkout Checklist">Conferência no Checkout</p>
       <h2 class="sec-title" style="margin-bottom:0"><span class="i18n" data-pt="Inventário do" data-en="Property">Inventário do</span> <em><span class="i18n" data-pt="Imóvel" data-en="Inventory">Imóvel</span></em></h2>
-      <p style="color:var(--text-muted);font-size:15px;margin-top:10px;max-width:620px" class="i18n" data-pt="Em seu check-in e check-out, confira os itens do inventário do imóvel. Qualquer alteração, por favor nos comunique." data-en="On your check-in and check-out, please verify all inventory items. For any issues, please contact us.">Em seu check-in e check-out, confira os itens do inventário do imóvel. Qualquer alteração, por favor nos comunique.</p>
     </div>
-    <a href="https://wa.me/5548998638455?text=Olá!%20Gostaria%20de%20fazer%20contato%20sobre%20o%20inventário%20do%20imóvel." target="_blank" class="btn-whatsapp-inv">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      <span class="i18n" data-pt="Fale conosco via WhatsApp" data-en="Contact us via WhatsApp">Fale conosco via WhatsApp</span>
-    </a>
+    <button class="btn-admin" id="adminBtn" onclick="openAdminPanel()">🔐 <span class="i18n" data-pt="Área Admin" data-en="Admin Area">Área Admin</span></button>
   </div>
-  <div id="invProgress" style="margin:18px 0 4px"></div>
+  <div class="inv-stats" id="invStats"></div>
+  <div class="inv-filters" id="invFilters"></div>
   <div id="invContent"><div class="inv-loading">⏳ Carregando inventário...</div></div>
-  <div style="display:flex;justify-content:center;margin-top:28px">
-    <a href="https://wa.me/5548998638455?text=Olá!%20Gostaria%20de%20fazer%20contato%20sobre%20o%20inventário%20do%20imóvel." target="_blank" class="btn-whatsapp-inv">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      <span class="i18n" data-pt="Fale conosco via WhatsApp" data-en="Contact us via WhatsApp">Fale conosco via WhatsApp</span>
-    </a>
-  </div>
 </section>
 
 <footer>
@@ -572,6 +545,8 @@ const places = [
   {id:70,cat:'restaurant',emoji:'🌊',name:'Zé do Cacupé',tag:{pt:'Regional ⭐',en:'Regional ⭐'},desc:{pt:'Restaurante familiar tradicional em Cacupé com vista para o mar. Sequência de camarão, peixe frito e pirão artesanal. Eleito melhor restaurante regional. Google 4,7★.',en:'Traditional family restaurant in Cacupé overlooking the sea. Shrimp sequence, fried fish and artisan fish stew. Named best regional restaurant. Google 4.7★.'},lat:-27.5372000,lng:-48.5246000,price:2,img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=70'},
   {id:71,cat:'restaurant',emoji:'🍕',name:'Forneria Santo Antônio',tag:{pt:'Pizzaria ⭐',en:'Pizzeria ⭐'},desc:{pt:'Pizzaria gourmet com ingredientes regionais e criações autorais em Santo Antônio de Lisboa. TripAdvisor 5,0★ e Google 4,9★. Opções veganas e sem glúten.',en:'Gourmet pizzeria with regional ingredients in Santo Antônio de Lisboa. TripAdvisor 5.0★ and Google 4.9★. Vegan and gluten-free options.'},lat:-27.5110000,lng:-48.5250000,price:2,img:'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&q=70'},
   {id:72,cat:'restaurant',emoji:'🇵🇹',name:'Delícias Portuguesas',tag:{pt:'Português ⭐',en:'Portuguese ⭐'},desc:{pt:'Culinária lusitana autêntica no Centro. Bacalhau à lagareiro, polvo, alheiras e pastéis de Belém. Decoração com azulejos portugueses. TripAdvisor 4,6★.',en:'Authentic Portuguese cuisine downtown. Lagareiro codfish, octopus and Belém pastries. Portuguese tile décor. TripAdvisor 4.6★.'},lat:-27.5965000,lng:-48.5492000,price:2,img:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=70'},
+  {id:103,cat:'restaurant',emoji:'🍽️',name:'Viva Trindade – Praça de Alimentação',tag:{pt:'Food Hall',en:'Food Hall'},desc:{pt:'Empreendimento moderno no coração da Trindade, em frente ao HU. Praça de alimentação variada no piso C1, além de mercado Angeloni na entrada. Ambiente acolhedor e muito bem avaliado pelos moradores do bairro. 4,8★.',en:'Modern complex in the heart of Trindade, in front of the University Hospital. Varied food court on level C1, plus Angeloni supermarket at the entrance. Welcoming atmosphere, highly rated by locals. 4.8★.'},lat:-27.5967259,lng:-48.5194434,price:1,img:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=70'},
+  {id:104,cat:'restaurant',emoji:'🛍️',name:'Trindade Shopping – Praça de Alimentação',tag:{pt:'Praça de Alimentação',en:'Food Court'},desc:{pt:'Shopping de bairro na Rua Lauro Linhares com boa variedade de opções na praça de alimentação. Preços acessíveis, aberto de segunda a sábado. 4,2★ com mais de 4.000 avaliações. Ideal para uma refeição rápida na região.',en:'Neighborhood mall on Rua Lauro Linhares with a good variety of food court options. Affordable prices, open Mon–Sat. 4.2★ with 4,000+ reviews. Ideal for a quick meal in the area.'},lat:-27.5968381,lng:-48.5204168,price:1,img:'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=70'},
   {id:6,cat:'beach',emoji:'🏖️',name:'Jurerê Internacional',tag:{pt:'Praia',en:'Beach'},desc:{pt:'Costa norte glamourosa. Águas cristalinas, beach clubs exclusivos e a cena mais sofisticada de Floripa.',en:'Glamorous north shore. Crystal waters, exclusive beach clubs and Floripa\'s most upscale scene.'},lat:-27.4402665,lng:-48.5027484,price:0,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
   {id:7,cat:'beach',emoji:'🏄',name:'Praia da Joaquina',tag:{pt:'Surf',en:'Surf'},desc:{pt:'Ondas atlânticas selvagens — a capital do surf de Florianópolis. Dunas para sandboard.',en:'Wild Atlantic waves — Florianópolis\'s surf capital. Dunes perfect for sandboarding.'},lat:-27.628731,lng:-48.448954,price:0,imgs:['images/praia-da-joaquina1.jpg','images/praia-da-joaquina2.jpg']},
   {id:8,cat:'beach',emoji:'🌅',name:'Lagoa da Conceição',tag:{pt:'Lagoa',en:'Lagoon'},desc:{pt:'Windsurf, kitesurf, vida noturna, barzinhos na avenida das rendeiras e o pôr do sol mais bonito da ilha.',en:'Windsurfing, kitesurfing, nightlife, small bars on Avenida das Rendeiras and the island\'s most beautiful sunset.'},lat:-27.60578,lng:-48.46344,price:0,img:'images/lagoa-da-conceicao-floripa1.jpg'},
@@ -615,6 +590,9 @@ const places = [
   {id:59,cat:'attraction',emoji:'🏝️',name:'Ilha do Campeche',tag:{pt:'Ilha',en:'Island'},desc:{pt:'Ilha paradisíaca com praias selvagens, piscinas naturais e trilhas. Acessível por barco a partir da Praia do Campeche. Patrimônio histórico com sambaquis.',en:'Paradise island with wild beaches, natural pools and trails. Accessible by boat from Praia do Campeche. Historical heritage site with shell middens.'},lat:-27.69528884345839,lng:-48.46604239310609,price:2,img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70'},
   {id:15,cat:'shopping',emoji:'🛍️',name:'Beiramar Shopping',tag:{pt:'Shopping',en:'Mall'},desc:{pt:'Principal shopping de Floripa às margens da Baía Norte. Lojas, cinemas e restaurantes.',en:'Floripa\'s main mall on Baía Norte shores. Stores, cinemas and restaurants.'},lat:-27.5847787,lng:-48.5450486,price:2,imgs:['images/Beiramar-Shopping.jpg']},
   {id:16,cat:'shopping',emoji:'🏬',name:'Shopping Villa Romana',tag:{pt:'Shopping',en:'Mall'},desc:{pt:'Shopping premium com as melhores marcas, área gourmet e excelente localização.',en:'Premium mall with top brands, gourmet area and excellent location.'},lat:-27.5899915,lng:-48.5150004,price:3,imgs:['images/villa_romana1.jpg','images/villa_romana2.jpg']},
+  {id:100,cat:'shopping',emoji:'🏪',name:'Manhattan44 Minimercado e Utilidades',tag:{pt:'Minimercado',en:'Convenience Store'},desc:{pt:'Minimercado e utilidades na Rua Des. Vítor Lima, na Trindade. Horário estendido, variedade de produtos e atendimento atencioso. Prático para quem está na região da UFSC.',en:'Convenience store and household goods on Rua Des. Vítor Lima, Trindade. Extended hours, good variety and attentive service. Practical for those near UFSC.'},lat:-27.5971216,lng:-48.5239751,price:1,img:'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&q=70'},
+  {id:101,cat:'shopping',emoji:'🛒',name:'Supermercados Imperatriz – Trindade',tag:{pt:'Supermercado',en:'Supermarket'},desc:{pt:'Grande supermercado na Rua Lauro Linhares com padaria, açougue, sushiteria e café. Aberto todos os dias das 7h às 22h30. Uma das maiores redes de SC, com ótima variedade.',en:'Large supermarket on Rua Lauro Linhares with bakery, butcher, sushi bar and café. Open daily 7 AM–10:30 PM. One of SC\'s top chains with great variety.'},lat:-27.5963509,lng:-48.5210393,price:1,img:'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&q=70'},
+  {id:102,cat:'shopping',emoji:'🛒',name:'Angeloni Trindade',tag:{pt:'Supermercado',en:'Supermarket'},desc:{pt:'Supermercado Angeloni na Rua Prof. Simão José Hess, na Trindade. Loja espaçosa e moderna com ampla variedade de produtos, padaria e setor de hortifrúti. Aberto das 7h às 22h30.',en:'Angeloni supermarket on Rua Prof. Simão José Hess, Trindade. Spacious modern store with wide product range, bakery and fresh produce section. Open daily 7 AM–10:30 PM.'},lat:-27.5967202,lng:-48.519617,price:2,img:'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&q=70'},
   {id:18,cat:'nightlife',emoji:'🍺',name:'John Bull Pub',tag:{pt:'Bar',en:'Bar'},desc:{pt:'O bar mais icônico de Floripa. Chope gelado, música ao vivo e público animado.',en:'Floripa\'s most iconic bar. Cold draft beer, live music and a lively timeless crowd.'},lat:-27.6083760,lng:-48.4539260,price:1,imgs:['images/john-bull1.jpg']},
   {id:19,cat:'nightlife',emoji:'🎉',name:'Jurerê Beach Village',tag:{pt:'Club',en:'Club'},desc:{pt:'Beach club com DJs internacionais, piscinas e a glamourosa cena de Floripa.',en:'Beach club with world-class DJs, pools and Floripa\'s glamorous crowd.'},lat:-27.4389624,lng:-48.4895904,price:3,img:'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=70'},
   {id:73,cat:'nightlife',emoji:'🍺',name:'Chopp do Gus – Córrego Grande',tag:{pt:'Bar / Rock ao Vivo',en:'Bar / Live Rock'},desc:{pt:'A casa do chopp e do rock de Floripa! Bandas ao vivo de terça a sábado, autosserviço de chopp artesanal, batata flambada 4 queijos e clima universitário descontraído. 3 min da UFSC.',en:"Floripa's home of beer and rock! Live bands Tue–Sat, self-service craft beer taps, flambéed 4-cheese fries and a relaxed university vibe. 3 min from UFSC."},lat:-27.5946000,lng:-48.5104000,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
@@ -631,11 +609,8 @@ const places = [
   {id:84,cat:'nightlife',emoji:'🎛️',name:'Terraza Music Park',tag:{pt:'Eletrônico / Techno',en:'Electronic / Techno'},desc:{pt:'Focada no eletrônico conceitual e techno em Jurerê, muito respeitada pela curadoria rigorosa de DJs nacionais e internacionais.',en:'Focused on conceptual electronic music and techno in Jurerê, highly regarded for its rigorous DJ curation.'},lat:-27.4395000,lng:-48.4955000,price:2,img:'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=70'},
   {id:85,cat:'nightlife',emoji:'🏳️‍🌈',name:'Conca Club',tag:{pt:'LGBTQIA+ / Eletrônico',en:'LGBTQIA+ / Electronic'},desc:{pt:'Tradicional e premiada casa noturna LGBTQIA+ no Centro. Música eletrônica, drag performances e ambiente acolhedor e inclusivo.',en:'Traditional award-winning LGBTQIA+ nightclub downtown. Electronic music, drag performances and a welcoming, inclusive atmosphere.'},lat:-27.5968000,lng:-48.5495000,price:2,img:'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=70'},
   {id:86,cat:'nightlife',emoji:'🤠',name:'Bar DeRaiz',tag:{pt:'Forró / Pé na Areia',en:'Forró / Beachside'},desc:{pt:'Conhecido pelo forró, samba e clima pé na areia perto da Lagoa/Joaquina. Um dos mais autênticos e elogiados de Floripa pela energia e público diverso.',en:'Known for forró, samba and beachside vibes near Lagoa/Joaquina. One of Floripa\'s most authentic and praised venues for energy and diverse crowd.'},lat:-27.6420000,lng:-48.4830000,price:1,img:'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&q=70'},
-  {id:87,cat:'nightlife',emoji:'🍺',name:'CSC – Centro Social da Cerveja',tag:{pt:'Bar / Cervejaria',en:'Bar / Brewery'},desc:{pt:'Bar universitário com espírito descontraído no Saco dos Limões. Excelente seleção de choppes artesanais, hambúrgueres artesanais premiados e petiscos generosos. Sempre cheio e com clima animado.',en:'Laid-back university-spirit bar in Saco dos Limões. Excellent craft beer selection, award-winning artisan burgers and generous snacks. Always packed and lively.'},lat:-27.602337,lng:-48.526035,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
-  {id:88,cat:'nightlife',emoji:'🌅',name:'Hemera Vibes Bar',tag:{pt:'Bar / Coquetelaria',en:'Cocktail Bar'},desc:{pt:'Bar com identidade visual única no bairro Carvoeira, perto da UFSC. Drinks criativos, karaoke, jogos de mesa e ambiente muito estético e descontraído. Frequentado por universitários e jovens criativos.',en:'Bar with unique visual identity in Carvoeira, near UFSC. Creative cocktails, karaoke, board games and a very aesthetic, relaxed atmosphere. Popular with students and young creatives.'},lat:-27.6035619,lng:-48.528563,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
-  {id:97,cat:'nightlife',emoji:'🎸',name:'General Lee Redneck Pub',tag:{pt:'Pub / Rock ao Vivo',en:'Pub / Live Rock'},desc:{pt:'O pub de rock mais querido da Trindade! Na Rua Cônego Bernardo, com bandas ao vivo de quarta a sábado, decoração temática americana e chope gelado. A apenas 5 min do Rooftop Trindade.',en:'Trindade\'s most beloved rock pub! On Rua Cônego Bernardo, with live bands Wed–Sat, American themed décor and cold draft beer. Just 5 min from Rooftop Trindade.'},lat:-27.5949715,lng:-48.5200433,price:1,img:'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&q=70'},
-  {id:98,cat:'nightlife',emoji:'🎱',name:'Midnight Snooker Rock Bar',tag:{pt:'Bar / Snooker',en:'Bar / Snooker'},desc:{pt:'Bar de rock e sinuca na Rua Lauro Linhares, na Trindade. Mesas de snooker, rock clássico no som, hambúrgueres artesanais e drinks. Ambiente intimista e autêntico, muito popular entre universitários.',en:'Rock and snooker bar on Rua Lauro Linhares, Trindade. Snooker tables, classic rock music, artisan burgers and cocktails. Intimate and authentic, very popular among university students.'},lat:-27.5932721,lng:-48.5215497,price:1,img:'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&q=70'},
-  {id:99,cat:'nightlife',emoji:'🏡',name:'Boteco da Ilha – Casa Hurbana',tag:{pt:'Boteco / Bar',en:'Boteco / Bar'},desc:{pt:'Boteco carioca com alma florianopolitana na Rua Bocaiúva, no Centro. Música ao vivo, drinks acessíveis, petiscos saborosos e clima descontraído. Um dos mais animados para happy hour e noites de semana.',en:'Rio-style boteco with a Floripa soul on Rua Bocaiúva, downtown. Live music, affordable drinks, tasty snacks and a relaxed vibe. One of the liveliest for happy hour and weeknights.'},lat:-27.5862097,lng:-48.5486759,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
+  {id:87,cat:'nightlife',emoji:'🎭',name:'Opium Bar',tag:{pt:'Bar & Balada',en:'Bar & Club'},desc:{pt:'Bar-balada performático muito popular no Centro. Drinks criativos, atmosfera inclusiva e programação com DJs locais e nacionais.',en:'Performative bar-club popular downtown. Creative cocktails, inclusive atmosphere and programming with local and national DJs.'},lat:-27.5960000,lng:-48.5450000,price:2,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
+  {id:88,cat:'nightlife',emoji:'🎤',name:'Saudades Bar',tag:{pt:'Boêmio / Artístico',en:'Bohemian / Artistic'},desc:{pt:'Ponto de encontro artístico na boêmia Rua Tiradentes, no Centro. Drinks autorais, DJs locais e atmosfera intimista e criativa.',en:'Artistic meeting point on bohemian Rua Tiradentes downtown. Signature cocktails, local DJs and an intimate, creative atmosphere.'},lat:-27.5975000,lng:-48.5460000,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
   {id:89,cat:'nightlife',emoji:'🍀',name:'The Black Swan',tag:{pt:'Pub Irlandês',en:'Irish Pub'},desc:{pt:'Pub irlandês tradicional na Lagoa da Conceição com boa seleção de cervejas artesanais e importadas, música ao vivo e sempre movimentado.',en:'Traditional Irish pub at Lagoa da Conceição with great craft and imported beer selection, live music and always buzzing.'},lat:-27.6035000,lng:-48.4760000,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
   {id:90,cat:'nightlife',emoji:'🥁',name:'Botequim Floripa',tag:{pt:'Samba / Happy Hour',en:'Samba / Happy Hour'},desc:{pt:'Clássico do happy hour de Floripa no Centro. Ambiente tradicional, samba ao vivo, petiscos e chope gelado. Ponto de encontro de moradores e turistas.',en:'A classic happy hour spot downtown. Traditional atmosphere, live samba, snacks and cold draft beer. Beloved by locals and tourists alike.'},lat:-27.5966000,lng:-48.5491000,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
   {id:91,cat:'nightlife',emoji:'🍻',name:'Koxixos Beer',tag:{pt:'Bar Beira Mar',en:'Waterfront Bar'},desc:{pt:'Um dos bares mais tradicionais da Beira Mar Norte. Ambiente vibrante de frente para o mar, chopes gelados, petiscos variados e clima perfeito para apreciar o pôr do sol.',en:'One of the most traditional bars on Beira Mar Norte. Vibrant atmosphere facing the sea, cold beers, varied snacks and perfect for watching the sunset.'},lat:-27.5798000,lng:-48.5350000,price:1,img:'https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=70'},
@@ -814,7 +789,7 @@ function nextImage(){
   updateModalImage();
 }
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){closeModal();}
+  if(e.key==='Escape'){closeModal();closeAdmin();}
   if(e.key==='ArrowLeft' && modalImages.length>1 && document.getElementById('modal').classList.contains('open')){prevImage();}
   if(e.key==='ArrowRight' && modalImages.length>1 && document.getElementById('modal').classList.contains('open')){nextImage();}
 });
@@ -834,50 +809,37 @@ document.getElementById('catTabs').addEventListener('click',e=>{
 });
 
 // ─────────────────────────────────────────
-// ── INVENTORY CHECKLIST ───────────────────
+// ── INVENTORY ─────────────────────────────
 // ─────────────────────────────────────────
 const INV_KEY='rooftop-trindade-inventory-v1';
-const CHECK_KEY='rooftop-trindade-checked-v1';
+const ADMIN_PASS='rooftop2024'; // ← altere para sua senha
+let isAdmin=false;
 let invItems=[];
-let checkedIds=new Set();
+let invCatFilter='all';
+let editingId=null;
 
-function loadInv(){
+const invCats={
+  pt:['all','Eletrodoméstico','Eletrônico','Móvel','Utensílio','Roupa de Cama','Decoração','Outro'],
+  en:['all','Appliance','Electronic','Furniture','Utensil','Bedding','Decoration','Other']
+};
+const condLabels={
+  'Ótimo':{cls:'cond-otimo',icon:'✅'},
+  'Bom':{cls:'cond-bom',icon:'⚠️'},
+  'Regular':{cls:'cond-regular',icon:'🔴'}
+};
+
+async function loadInv(){
   try{
-    const r=localStorage.getItem(INV_KEY);
-    invItems=r?JSON.parse(r):getDefaultItems();
-    const c=localStorage.getItem(CHECK_KEY);
-    checkedIds=c?new Set(JSON.parse(c)):new Set();
-  }catch(e){invItems=getDefaultItems();checkedIds=new Set();}
+    const r=await window.storage.get(INV_KEY);
+    invItems=r?JSON.parse(r.value):getDefaultItems();
+    if(!r)await saveInv();
+  }catch(e){invItems=getDefaultItems();}
   renderInventory();
-}
-
-function saveChecked(){
-  try{localStorage.setItem(CHECK_KEY,JSON.stringify([...checkedIds]));}catch(e){}
-}
-
-function toggleCheck(id){
-  if(checkedIds.has(id)) checkedIds.delete(id);
-  else checkedIds.add(id);
-  saveChecked();
-  renderInventory();
-}
-
-function openInvLightbox(src){
-  let lb=document.getElementById('invLightbox');
-  if(!lb){
-    lb=document.createElement('div');
-    lb.id='invLightbox';lb.className='inv-lightbox';
-    lb.innerHTML='<img id="invLbImg" src="" alt="">';
-    lb.addEventListener('click',()=>lb.classList.remove('open'));
-    document.body.appendChild(lb);
-  }
-  document.getElementById('invLbImg').src=src;
-  lb.classList.add('open');
 }
 
 function getDefaultItems(){
   return [
-    {id:1,name:'Smart TV 65"',cat:'Eletrônico',qty:1,cond:'Ótimo',notes:'TCL, modelo 65C6K 120hz',photo:'images/tv.jpg'},
+    {id:1,name:'Smart TV 65"',cat:'Eletrônico',qty:1,cond:'Ótimo',notes:'TCL, modelo 65C6K 120hz',photo:['images/tv.jpg']},
     {id:2,name:'Geladeira Frost Free',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Haier Inox',photo:''},
     {id:3,name:'Máquina de Lavar',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Samsung Lava e Seca, área de serviço',photo:''},
     {id:4,name:'Ar Condicionado Inverter',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Quarto, controle no painel',photo:''},
@@ -895,47 +857,178 @@ function getDefaultItems(){
   ];
 }
 
-const catEmojis={'Eletrodoméstico':'🏠','Eletrônico':'📱','Móvel':'🪑','Utensílio':'🍳','Roupa de Cama':'🛏️','Decoração':'🎨','Outro':'📦'};
-const condLabels={'Ótimo':{cls:'cond-otimo',label:'✅ Ótimo'},'Bom':{cls:'cond-bom',label:'⚠️ Bom'},'Regular':{cls:'cond-regular',label:'🔴 Regular'}};
-
-function renderInventory(){
-  const total=invItems.length;
-  const checked=checkedIds.size;
-  const pct=total?Math.round(checked/total*100):0;
-  const progressEl=document.getElementById('invProgress');
-  if(progressEl){
-    progressEl.innerHTML=`
-      <div class="inv-progress-bar"><div class="inv-progress-fill" style="width:${pct}%"></div></div>
-      <div class="inv-progress-label">${checked} / ${total} ${lang==='pt'?'itens conferidos':'items checked'} (${pct}%)</div>`;
-  }
-  const el=document.getElementById('invContent');
-  if(!el) return;
-  const rows=invItems.map(it=>{
-    const isChecked=checkedIds.has(it.id);
-    const cond=condLabels[it.cond]||condLabels['Ótimo'];
-    const thumbHtml=it.photo
-      ?`<div class="inv-check-thumb" onclick="event.stopPropagation();openInvLightbox('${it.photo}')"><img src="${it.photo}" alt="${it.name}" onerror="this.parentElement.innerHTML='<div class=\\'no-photo\\'>${catEmojis[it.cat]||'📦'}</div>'"></div>`
-      :`<div class="inv-check-thumb"><div class="no-photo">${catEmojis[it.cat]||'📦'}</div></div>`;
-    return `<div class="inv-check-item${isChecked?' checked':''}" onclick="toggleCheck(${it.id})">
-      <div class="inv-check-toggle"><div class="inv-check-box"></div></div>
-      ${thumbHtml}
-      <div class="inv-check-body">
-        <div class="inv-check-name">${it.name}</div>
-        <div class="inv-check-meta">${it.cat} · ${lang==='pt'?'Qtd':'Qty'}: ${it.qty}${it.notes?' · '+it.notes:''}</div>
-        <span class="inv-check-cond ${cond.cls}">${cond.label}</span>
-      </div>
-    </div>`;
-  }).join('');
-  el.innerHTML=`<div class="inv-checklist">${rows}</div>`;
+async function saveInv(){
+  try{await window.storage.set(INV_KEY,JSON.stringify(invItems));}
+  catch(e){console.error('Erro ao salvar inventário',e);}
 }
 
+function renderInventory(){
+  const cats=invCats[lang]||invCats.pt;
+  // stats
+  const statsEl=document.getElementById('invStats');
+  const total=invItems.length;
+  const bycat={};
+  invItems.forEach(it=>{bycat[it.cat]=(bycat[it.cat]||0)+it.qty;});
+  const totalQty=invItems.reduce((s,it)=>s+it.qty,0);
+  statsEl.innerHTML=`
+    <div class="inv-stat"><div class="inv-stat-num">${invItems.length}</div><div class="inv-stat-label">${lang==='pt'?'Tipos de item':'Item types'}</div></div>
+    <div class="inv-stat"><div class="inv-stat-num">${totalQty}</div><div class="inv-stat-label">${lang==='pt'?'Total de peças':'Total pieces'}</div></div>
+    <div class="inv-stat"><div class="inv-stat-num">${invItems.filter(x=>x.cond==='Ótimo').length}</div><div class="inv-stat-label">${lang==='pt'?'Em estado Ótimo':'In great condition'}</div></div>`;
+  // filters
+  const filtersEl=document.getElementById('invFilters');
+  filtersEl.innerHTML=cats.map((c,i)=>{
+    const ptCat=invCats.pt[i];
+    const count=ptCat==='all'?invItems.length:invItems.filter(x=>x.cat===ptCat).length;
+    return `<button class="inv-filter${invCatFilter===ptCat?' active':''}" data-cat="${ptCat}">${c} ${count>0?`<span style="opacity:.6;font-size:11px">(${count})</span>`:''}</button>`;
+  }).join('');
+  filtersEl.querySelectorAll('.inv-filter').forEach(b=>b.addEventListener('click',()=>{invCatFilter=b.dataset.cat;renderInventory();}));
+  // items
+  const filtered=invCatFilter==='all'?invItems:invItems.filter(x=>x.cat===invCatFilter);
+  const el=document.getElementById('invContent');
+  if(filtered.length===0){
+    el.innerHTML=`<div class="inv-empty"><div class="inv-empty-icon">📦</div><div>${lang==='pt'?'Nenhum item nesta categoria.':'No items in this category.'}</div></div>`;
+    return;
+  }
+  const bgCats={
+    'Eletrodoméstico':'linear-gradient(135deg,#e3f2fd,#bbdefb)',
+    'Eletrônico':'linear-gradient(135deg,#e8eaf6,#c5cae9)',
+    'Móvel':'linear-gradient(135deg,#fff8e1,#ffecb3)',
+    'Utensílio':'linear-gradient(135deg,#e8f5e9,#c8e6c9)',
+    'Roupa de Cama':'linear-gradient(135deg,#fce4ec,#f8bbd0)',
+    'Decoração':'linear-gradient(135deg,#f3e5f5,#e1bee7)',
+    'Outro':'linear-gradient(135deg,#eeeeee,#e0e0e0)'
+  };
+  const catEmojis={'Eletrodoméstico':'🏠','Eletrônico':'📱','Móvel':'🪑','Utensílio':'🍳','Roupa de Cama':'🛏️','Decoração':'🎨','Outro':'📦'};
+  el.innerHTML=`<div class="inv-grid">${filtered.map(it=>{
+    const cond=condLabels[it.cond]||condLabels['Ótimo'];
+    const actions=isAdmin?`<div class="inv-card-actions"><button class="btn-edit" onclick="editItem(${it.id})">✏️ Editar</button><button class="btn-del" onclick="deleteItem(${it.id})">🗑️</button></div>`:'';
+    const photoBg=it.photo?`<img src="${it.photo}" alt="${it.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`:`<div style="font-size:42px">${catEmojis[it.cat]||'📦'}</div>`;
+    return `<div class="inv-card">
+      <div class="inv-card-photo" style="background:${bgCats[it.cat]||bgCats['Outro']}">${photoBg}</div>
+      <div class="inv-card-body">
+        <div class="inv-card-cat">${it.cat}</div>
+        <div class="inv-card-name">${it.name}</div>
+        <div class="inv-card-info">${lang==='pt'?'Qtd':'Qty'}: <strong>${it.qty}</strong>${it.notes?` · ${it.notes}`:''}</div>
+        <div class="inv-card-cond ${cond.cls}">${cond.icon} ${it.cond}</div>
+        ${actions}
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+// ── ADMIN ──
+function openAdminPanel(){
+  if(isAdmin){showAdminPanel();return;}
+  document.getElementById('adminBoxTitle').textContent='🔐 '+(lang==='pt'?'Área Administrativa':'Admin Area');
+  document.getElementById('adminContent').innerHTML=`
+    <p style="color:var(--text-muted);font-size:14px;margin-bottom:16px">${lang==='pt'?'Digite a senha de administrador:':'Enter the administrator password:'}</p>
+    <input type="password" id="passInput" class="form-input" placeholder="${lang==='pt'?'Senha':'Password'}" style="margin-bottom:12px">
+    <div style="display:flex;gap:10px">
+      <button class="btn-save" onclick="checkPass()">${lang==='pt'?'Entrar':'Login'}</button>
+      <button class="btn-cancel" onclick="closeAdmin()">${lang==='pt'?'Cancelar':'Cancel'}</button>
+    </div>
+    <p class="pass-hint">${lang==='pt'?'Senha padrão: rooftop2024':'Default password: rooftop2024'}</p>`;
+  document.getElementById('adminModal').classList.add('open');
+  setTimeout(()=>document.getElementById('passInput')?.focus(),300);
+  document.getElementById('passInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')checkPass();});
+}
+
+function checkPass(){
+  const v=document.getElementById('passInput')?.value;
+  if(v===ADMIN_PASS){
+    isAdmin=true;
+    document.getElementById('adminBtn').classList.add('admin-active');
+    document.getElementById('adminBtn').innerHTML='🔓 Admin';
+    showAdminPanel();
+  } else {
+    document.getElementById('passInput').style.borderColor='#e00';
+    document.getElementById('passInput').value='';
+    document.getElementById('passInput').placeholder=lang==='pt'?'Senha incorreta!':'Wrong password!';
+  }
+}
+
+function showAdminPanel(){
+  editingId=null;
+  document.getElementById('adminBoxTitle').innerHTML='🛠️ '+(lang==='pt'?'Gerenciar Inventário':'Manage Inventory');
+  const cats=invCats.pt.slice(1);
+  document.getElementById('adminContent').innerHTML=`
+    <p style="color:var(--text-muted);font-size:13px;margin-bottom:18px">${lang==='pt'?'Adicione ou edite itens do inventário:':'Add or edit inventory items:'}</p>
+    <div class="form-group"><label class="form-label">${lang==='pt'?'Nome do Item':'Item Name'}</label><input id="fName" class="form-input" placeholder="${lang==='pt'?'Ex: Smart TV 65&quot;':'e.g. Smart TV 65&quot;'}"></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">${lang==='pt'?'Categoria':'Category'}</label>
+        <select id="fCat" class="form-select">${cats.map(c=>`<option>${c}</option>`).join('')}</select></div>
+      <div class="form-group"><label class="form-label">${lang==='pt'?'Qtd':'Qty'}</label><input id="fQty" class="form-input" type="number" min="1" value="1"></div>
+    </div>
+    <div class="form-group"><label class="form-label">${lang==='pt'?'Estado':'Condition'}</label>
+      <select id="fCond" class="form-select"><option>Ótimo</option><option>Bom</option><option>Regular</option></select></div>
+    <div class="form-group"><label class="form-label">${lang==='pt'?'Observações':'Notes'}</label><textarea id="fNotes" class="form-textarea" placeholder="${lang==='pt'?'Localização, cor, marca...':'Location, color, brand...'}"></textarea></div>
+    <div class="form-group"><label class="form-label">${lang==='pt'?'URL da Foto (opcional)':'Photo URL (optional)'}</label><input id="fPhoto" class="form-input" placeholder="https://..."></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn-save" id="fSaveBtn" onclick="saveItem()">${lang==='pt'?'Salvar Item':'Save Item'}</button>
+      <button class="btn-cancel" onclick="closeAdmin()">${lang==='pt'?'Fechar':'Close'}</button>
+      <button class="btn-cancel" onclick="logoutAdmin()" style="margin-left:auto;color:#c00">${lang==='pt'?'Sair':'Logout'}</button>
+    </div>`;
+  document.getElementById('adminModal').classList.add('open');
+}
+
+function editItem(id){
+  const it=invItems.find(x=>x.id===id);if(!it)return;
+  editingId=id;
+  showAdminPanel();
+  document.getElementById('fName').value=it.name;
+  document.getElementById('fCat').value=it.cat;
+  document.getElementById('fQty').value=it.qty;
+  document.getElementById('fCond').value=it.cond;
+  document.getElementById('fNotes').value=it.notes;
+  document.getElementById('fPhoto').value=it.photo||'';
+  document.getElementById('fSaveBtn').textContent=lang==='pt'?'Atualizar Item':'Update Item';
+}
+
+async function saveItem(){
+  const name=document.getElementById('fName')?.value?.trim();
+  if(!name){document.getElementById('fName').style.borderColor='#e00';return;}
+  const item={
+    id:editingId||(Date.now()),
+    name,
+    cat:document.getElementById('fCat').value,
+    qty:parseInt(document.getElementById('fQty').value)||1,
+    cond:document.getElementById('fCond').value,
+    notes:document.getElementById('fNotes').value.trim(),
+    photo:document.getElementById('fPhoto').value.trim()
+  };
+  if(editingId){
+    const idx=invItems.findIndex(x=>x.id===editingId);
+    if(idx>=0)invItems[idx]=item;
+  } else {
+    invItems.push(item);
+  }
+  await saveInv();
+  closeAdmin();
+  renderInventory();
+}
+
+async function deleteItem(id){
+  if(!confirm(lang==='pt'?'Remover este item do inventário?':'Remove this item from the inventory?'))return;
+  invItems=invItems.filter(x=>x.id!==id);
+  await saveInv();
+  renderInventory();
+}
+
+function logoutAdmin(){
+  isAdmin=false;
+  document.getElementById('adminBtn').classList.remove('admin-active');
+  document.getElementById('adminBtn').innerHTML='🔐 <span class="i18n" data-pt="Área Admin" data-en="Admin Area">'+(lang==='pt'?'Área Admin':'Admin Area')+'</span>';
+  closeAdmin();
+  renderInventory();
+}
+
+function closeAdmin(){document.getElementById('adminModal').classList.remove('open');editingId=null;}
 
 // ── INIT ──
 window.addEventListener('DOMContentLoaded',()=>{
   renderAmenities();
   initMap();
   loadInv();
-
   const loadMore = document.getElementById('loadMoreBtn');
   if(loadMore){loadMore.addEventListener('click',showMorePlaces);}
 });
