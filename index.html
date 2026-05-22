@@ -245,9 +245,11 @@ footer strong{color:rgba(255,255,255,.65);}
 .divider{height:2px;background:linear-gradient(to right,transparent,var(--sand-dark),transparent);margin:0;}
 
 /* ── MANUAL DE INSTRUÇÕES ── */
-.manual-section{background:linear-gradient(135deg,#0d1b2a 0%,#1a2d3e 100%);padding:72px 24px;}
-.manual-inner{max-width:860px;margin:0 auto;}
-.manual-subtitle{color:rgba(255,255,255,.7);font-size:15px;margin:12px 0 40px;max-width:620px;}
+.manual-section{background-image:url(images/hero.jpg);background-size:cover;background-position:center;background-attachment:fixed;position:relative;padding:72px 24px;}
+.manual-section::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.72);z-index:0;}
+.manual-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+.manual-subtitle{color:rgba(255,255,255,.8);font-size:15px;margin:12px 0 40px;max-width:620px;}
+.manual-section .sec-label{font-size:15px;letter-spacing:.28em;}
 .manual-list{display:flex;flex-direction:column;gap:0;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.4);}
 .manual-item{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);transition:background .2s;}
 .manual-item:last-child{border-bottom:none;}
