@@ -245,11 +245,13 @@ footer strong{color:rgba(255,255,255,.65);}
 .divider{height:2px;background:linear-gradient(to right,transparent,var(--sand-dark),transparent);margin:0;}
 
 /* ── MANUAL DE INSTRUÇÕES ── */
-.manual-section{background-image:url(images/hero.jpg);background-size:cover;background-position:center;background-attachment:fixed;position:relative;padding:72px 24px;}
-.manual-section::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.72);z-index:0;}
+.manual-section{background:linear-gradient(135deg,#0d3b52 0%,#0a4a3a 60%,#1a3a2a 100%);position:relative;padding:72px 24px;}
+.manual-section::before{content:'';position:absolute;inset:0;background:url(images/hero.jpg) center/cover no-repeat;opacity:.12;z-index:0;}
 .manual-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
-.manual-subtitle{color:rgba(255,255,255,.8);font-size:15px;margin:12px 0 40px;max-width:620px;}
-.manual-section .sec-label{font-size:15px;letter-spacing:.28em;}
+.manual-subtitle{color:rgba(255,255,255,.9);font-size:16px;margin:12px 0 40px;max-width:620px;line-height:1.6;}
+.manual-section .sec-label{font-size:13px;letter-spacing:.32em;color:#7de8c0;margin-bottom:10px;}
+.manual-section .sec-title{color:#ffffff;font-size:clamp(30px,4.5vw,50px);}
+.manual-section .sec-title em{color:#7de8c0;}
 .manual-list{display:flex;flex-direction:column;gap:0;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.4);}
 .manual-item{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);transition:background .2s;}
 .manual-item:last-child{border-bottom:none;}
