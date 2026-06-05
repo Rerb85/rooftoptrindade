@@ -264,7 +264,15 @@ footer strong{color:rgba(255,255,255,.65);}
 .popup-sub{font-size:12px;color:#888;margin-top:2px;}
 .divider{height:2px;background:linear-gradient(to right,transparent,var(--sand-dark),transparent);margin:0;}
 
-/* ── MANUAL DE INSTRUÇÕES ── */
+.inv-loc-badge{display:inline-block;font-size:11px;font-weight:600;color:var(--ocean);background:rgba(13,98,135,.1);padding:2px 8px;border-radius:100px;margin-right:4px;}
+.inv-expand-btn{display:inline-flex;align-items:center;gap:4px;margin-top:7px;background:none;border:1px solid rgba(0,0,0,.15);border-radius:100px;padding:3px 10px;font-size:12px;font-weight:600;color:var(--ocean-deep);cursor:pointer;transition:all .2s;}
+.inv-expand-btn:hover{background:rgba(13,98,135,.08);}
+.inv-sublist-wrap{background:#f8fafc;border-bottom:1px solid rgba(0,0,0,.06);padding:12px 16px 12px 144px;}
+.inv-sublist{display:flex;flex-direction:column;gap:6px;}
+.inv-subitem{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#444;cursor:pointer;line-height:1.5;}
+.inv-subitem input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:#22c55e;cursor:pointer;}
+.inv-subitem span{flex:1;}
+
 .manual-section{background:linear-gradient(135deg,#0d3b52 0%,#0a4a3a 60%,#1a3a2a 100%);position:relative;padding:72px 24px;}
 .manual-section::before{content:'';position:absolute;inset:0;background:url(images/hero.jpg) center/cover no-repeat;opacity:.12;z-index:0;}
 .manual-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
@@ -954,21 +962,75 @@ function openInvLightbox(src){
 
 function getDefaultItems(){
   return [
-    {id:1,name:'Smart TV 65"',cat:'Eletrônico',qty:1,cond:'Ótimo',notes:'TCL, modelo 65C6K 120hz',photo:'images/tv.jpg'},
-    {id:2,name:'Geladeira Frost Free',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Haier Inox',photo:''},
-    {id:3,name:'Máquina de Lavar',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Samsung Lava e Seca, área de serviço',photo:''},
-    {id:4,name:'Ar Condicionado Inverter',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Quarto, controle no painel',photo:''},
-    {id:5,name:'Micro-ondas',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Philco, área gourmet',photo:''},
-    {id:6,name:'Mesa de Jantar / Bilhar',cat:'Móvel',qty:1,cond:'Ótimo',notes:'Transforma em mesa de bilhar com kit incluso',photo:''},
-    {id:7,name:'Sofá-cama',cat:'Móvel',qty:1,cond:'Ótimo',notes:'Vira cama de casal confortável',photo:''},
-    {id:8,name:'Jogo de Cama Casal',cat:'Roupa de Cama',qty:2,cond:'Ótimo',notes:'300 fios, extras no armário',photo:''},
-    {id:9,name:'Jogo de Toalhas',cat:'Roupa de Cama',qty:4,cond:'Ótimo',notes:'2 de rosto, 2 de banho por hóspede',photo:''},
-    {id:10,name:'Violão Acústico',cat:'Decoração',qty:1,cond:'Ótimo',notes:'Na parede da sala, pode usar',photo:''},
-    {id:11,name:'Violão Elétrico',cat:'Decoração',qty:1,cond:'Ótimo',notes:'Na parede da sala, pode usar',photo:''},
-    {id:12,name:'Fogão à Lenha / Braseiro',cat:'Utensílio',qty:1,cond:'Ótimo',notes:'Área gourmet com forno à lenha integrado',photo:''},
-    {id:13,name:'Jogo de Panelas',cat:'Utensílio',qty:1,cond:'Ótimo',notes:'5 peças, cozinha',photo:''},
-    {id:14,name:'Jogo de Talheres',cat:'Utensílio',qty:1,cond:'Ótimo',notes:'6 pessoas, gaveta cozinha',photo:''},
-    {id:15,name:'Filtro de Água 5 Estágios',cat:'Eletrodoméstico',qty:1,cond:'Ótimo',notes:'Área de serviço, troca filtro a cada 6 meses',photo:''},
+    {
+      id:1, name:'Smart TV 65"', loc:'Sala', cond:'Ótimo',
+      notes:'TCL 65C6K — verificar funcionamento', photo:'images/tv.jpg',
+      subitems:[]
+    },
+    {
+      id:2, name:'Utensílios de Cozinha', loc:'1ª gaveta pia', cond:'Ótimo',
+      notes:'Verificar itens da gaveta', photo:'images/gaveta1.jpg',
+      subitems:[
+        'Jogo de talheres Tramontina: 6 colheres médias, 6 garfos, 6 facas, 6 colheres pequenas',
+        '1 saca-rolhas',
+        '1 cortador de pizza',
+        '1 abridor de latas',
+        '1 faca para pão',
+        '1 faca Santoku 18cm — Kuhn Rikon',
+        '1 chaira',
+        '1 garfo de churrasco',
+        '1 escumadeira',
+        '1 espátula cabo preto — Tramontina',
+        '1 espátula cabo curto branco',
+        '1 pegador de churrasco',
+      ]
+    },
+    {
+      id:3, name:'Utensílios de Cozinha', loc:'2ª gaveta pia', cond:'Ótimo',
+      notes:'Verificar itens da gaveta', photo:'images/gaveta2.jpg',
+      subitems:[
+        'Jogo de 10 potes de sobremesa de plástico',
+        '3 potes de cerâmica',
+        '1 balança',
+        '4 mini espátulas de cabo de madeira',
+      ]
+    },
+    {
+      id:4, name:'Jogo de Acessórios para Forno de Pizza', loc:'Parede da cozinha', cond:'Ótimo',
+      notes:'Verificar itens na parede', photo:'images/acessorios_pizza.jpg',
+      subitems:[]
+    },
+    {
+      id:5, name:'Micro-ondas', loc:'Pia cozinha', cond:'Ótimo',
+      notes:'Philco — verificar funcionamento', photo:'images/microondas.jpg',
+      subitems:[]
+    },
+    {
+      id:6, name:'Cooktop Indução', loc:'Pia cozinha', cond:'Ótimo',
+      notes:'Philco — verificar funcionamento', photo:'images/cooktop.jpg',
+      subitems:[]
+    },
+    {
+      id:7, name:'Jogo de Pratos', loc:'Carrinho gourmet', cond:'Ótimo',
+      notes:'Verificar itens no carrinho', photo:'images/pratos.jpg',
+      subitems:[
+        '6 pratos modelo pizza',
+        '6 pratos modelo hambúrguer',
+        '4 pratos modelo tapioca',
+        '1 prato de petisco de vidro pequeno',
+        '1 bandeja espelhada',
+      ]
+    },
+    {
+      id:8, name:'Jogo de 6 Copos de Vidro', loc:'Armário inferior forno', cond:'Ótimo',
+      notes:'Verificar copos no armário', photo:'images/armario_forno.jpg',
+      subitems:[]
+    },
+    {
+      id:9, name:'Jarra de Vidro', loc:'Armário inferior forno', cond:'Ótimo',
+      notes:'', photo:'images/armario_forno.jpg',
+      subitems:[]
+    },
   ];
 }
 
@@ -985,20 +1047,63 @@ function renderInventory(){
     const cond=condLabels[it.cond]||condLabels['Ótimo'];
     const photoSrc=Array.isArray(it.photo)?it.photo[0]:it.photo;
     const thumbHtml=photoSrc
-      ?`<div class="inv-check-thumb" onclick="event.stopPropagation();openInvLightbox('${photoSrc}')"><img src="${photoSrc}" alt="${it.name}" onerror="this.parentElement.innerHTML='<div class=\'no-photo\'>${catEmojis[it.cat]||'📦'}</div>'"></div>`
-      :`<div class="inv-check-thumb"><div class="no-photo">${catEmojis[it.cat]||'📦'}</div></div>`;
-    return `<div class="inv-check-item${isChecked?' checked':''}" onclick="toggleCheck(${it.id})">
+      ?`<div class="inv-check-thumb" onclick="event.stopPropagation();openInvLightbox('${photoSrc}')"><img src="${photoSrc}" alt="${it.name}" onerror="this.parentElement.innerHTML='<div class=\'no-photo\'>${catEmojis[it.cat||'Utensílio']||'📦'}</div>'"></div>`
+      :`<div class="inv-check-thumb"><div class="no-photo">📦</div></div>`;
+    const locBadge=it.loc?`<span class="inv-loc-badge">📍 ${it.loc}</span>`:'';
+    const hasSubitems=it.subitems&&it.subitems.length>0;
+    const sublistHtml=hasSubitems?`
+      <div class="inv-sublist" id="sub-${it.id}">
+        ${it.subitems.map((s,i)=>`<label class="inv-subitem" onclick="event.stopPropagation()">
+          <input type="checkbox" class="inv-subcheck" onchange="updateSubChecks(${it.id})"> <span>${s}</span>
+        </label>`).join('')}
+      </div>`:'';
+    const expandBtn=hasSubitems?`<button class="inv-expand-btn" onclick="event.stopPropagation();toggleSublist(${it.id})" id="expbtn-${it.id}">▾ ${lang==='pt'?'Ver itens':lang==='es'?'Ver artículos':'See items'}</button>`:'';
+    return `<div class="inv-check-item${isChecked?' checked':''}" onclick="toggleCheck(${it.id})" id="invitem-${it.id}">
       <div class="inv-check-toggle"><div class="inv-check-box"></div></div>
       ${thumbHtml}
       <div class="inv-check-body">
         <div class="inv-check-name">${it.name}</div>
-        <div class="inv-check-meta">${it.cat} · ${lang==='pt'?'Qtd':lang==='es'?'Cant':'Qty'}: ${it.qty}${it.notes?' · '+it.notes:''}</div>
+        <div class="inv-check-meta">${locBadge}${it.notes?' · '+it.notes:''}</div>
         <span class="inv-check-cond ${cond.cls}">${cond.label}</span>
+        ${expandBtn}
       </div>
-    </div>`;
+    </div>${hasSubitems?`<div class="inv-sublist-wrap" id="subwrap-${it.id}" style="display:none">${sublistHtml}</div>`:''}`;
   }).join('');
   el.innerHTML=`<div class="inv-checklist">${rows}</div>`;
 }
+
+function toggleSublist(id){
+  const wrap=document.getElementById('subwrap-'+id);
+  const btn=document.getElementById('expbtn-'+id);
+  if(!wrap)return;
+  const open=wrap.style.display==='none';
+  wrap.style.display=open?'block':'none';
+  if(btn) btn.textContent=open?`▴ ${lang==='pt'?'Ocultar':lang==='es'?'Ocultar':'Hide'}`:
+    `▾ ${lang==='pt'?'Ver itens':lang==='es'?'Ver artículos':'See items'}`;
+}
+
+function updateSubChecks(id){
+  const wrap=document.getElementById('subwrap-'+id);
+  if(!wrap)return;
+  const all=wrap.querySelectorAll('.inv-subcheck');
+  const allChecked=[...all].every(c=>c.checked);
+  if(allChecked){
+    checkedIds.add(id);
+  } else {
+    checkedIds.delete(id);
+  }
+  saveChecked();
+  // update visual only, no full re-render
+  const item=document.getElementById('invitem-'+id);
+  if(item) item.className='inv-check-item'+(checkedIds.has(id)?' checked':'');
+  const box=item?.querySelector('.inv-check-box');
+  if(box) box.className='inv-check-box';
+  const pg=document.getElementById('invProgress');
+  const total=invItems.length, checked=checkedIds.size;
+  const pct=total?Math.round(checked/total*100):0;
+  if(pg) pg.innerHTML=`<div class="inv-progress-bar"><div class="inv-progress-fill" style="width:${pct}%"></div></div><div class="inv-progress-label">${checked} / ${total} ${lang==='pt'?'itens conferidos':lang==='es'?'artículos verificados':'items checked'} (${pct}%)</div>`;
+}
+
 
 
 // ── MANUAL DE INSTRUÇÕES ──────────────────
@@ -1115,15 +1220,15 @@ const manualItems = [
     body:{
       pt:`<p>O quadro de luz (quadro elétrico / quadro de disjuntores) fica <strong>atrás da TV</strong>.</p>
 <p>Em caso de queda de energia ou desarme de disjuntores, puxe a TV no suporte articulado com cuidado (equipamento frágil) e acesse o quadro de luz retirando a tampa de MDF. Veja o vídeo:</p>
-<div class="manual-video-wrap"><div class="manual-video-placeholder"><span>▶️</span>Adicione aqui o link do YouTube — acesso ao quadro de luz</div></div>
+<div class="manual-video-wrap"><iframe src="https://www.youtube.com/embed/dHPzZJuwwmk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 <p>⚠️ Evite o acesso ao quadro por crianças e tenha cuidado com choques elétricos ao manusear.</p>`,
       en:`<p>The circuit breaker box is located <strong>behind the TV</strong>.</p>
 <p>In case of power outage or tripped breakers, carefully pull the TV on its articulated mount (fragile equipment) and access the panel by removing the MDF cover. Watch the video:</p>
-<div class="manual-video-wrap"><div class="manual-video-placeholder"><span>▶️</span>Add the YouTube link here — accessing the circuit breaker</div></div>
+<div class="manual-video-wrap"><iframe src="https://www.youtube.com/embed/dHPzZJuwwmk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 <p>⚠️ Keep children away from the panel and be careful of electric shock when handling it.</p>`,
       es:`<p>El cuadro eléctrico (tablero de disyuntores) está ubicado <strong>detrás del televisor</strong>.</p>
 <p>En caso de corte de luz o disparo de disyuntores, jale el televisor en su soporte articulado con cuidado (equipo frágil) y acceda al tablero retirando la tapa de MDF. Vea el video:</p>
-<div class="manual-video-wrap"><div class="manual-video-placeholder"><span>▶️</span>Agregue aquí el enlace de YouTube — acceso al cuadro eléctrico</div></div>
+<div class="manual-video-wrap"><iframe src="https://www.youtube.com/embed/dHPzZJuwwmk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 <p>⚠️ Evite que los niños accedan al tablero y tenga cuidado con las descargas eléctricas al manipularlo.</p>`
     }
   },
