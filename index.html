@@ -1032,6 +1032,9 @@ function getDefaultItems(){
       subitems:[]
     },
     {
+      id:11, name:'Controles da TV e Ventilador de Teto', loc:'Rack da sala', cond:'Ótimo', notes:'Ao final da estadia, devolvê-los ao mesmo local', photo:'images/tv.jpg', subitems:[]
+    },
+    {
       id:10, name:'Controle Ar-Condicionado', loc:'Criado mudo quarto', cond:'Ótimo',
       notes:'Verificar presença no criado mudo', photo:'images/controle_ar.jpg',
       subitems:[]
@@ -1142,7 +1145,9 @@ const manualItems = [
     thumb:'images/sauna1.jpg',
     title:{pt:'Sauna',en:'Sauna',es:'Sauna'},
     body:{
-      pt:`<p class="manual-section-title">Informações importantes para uso da Sauna</p>
+      pt:`<div class="manual-alert"><span>⚠️</span><div><strong>Atenção:</strong> Cuidado com a saída de vapor (mangueira de metal). Nunca encoste na mangueira nem coloque as mãos ou os pés na frente da saída de vapor. <strong>RISCO GRAVE DE QUEIMADURAS.</strong></div></div>
+<div class="manual-alert"><span>🚫</span><div><strong>Proibido</strong> o uso da sauna por crianças desacompanhadas. Não nos responsabilizamos por queimaduras ou acidentes causados por mau uso ou negligência.</div></div>
+<p class="manual-section-title">Informações importantes para uso da Sauna</p>
 <ul><li>Favor <strong>não mexer no termostato</strong> da sauna — ela já foi calibrada para a temperatura ideal.</li><li>Recomenda-se <strong>não tomar sauna sozinho</strong>.</li></ul>
 <p class="manual-section-title">⏱️ Tempo e Temperatura</p>
 <ul><li><strong>Duração ideal:</strong> Limite cada sessão a 10–15 minutos (máximo 20 minutos).</li><li><strong>Temperatura:</strong> A sauna úmida opera entre 40ºC e 50ºC. Se o calor estiver desconfortável, saia imediatamente.</li></ul>
@@ -1153,7 +1158,9 @@ const manualItems = [
 <p class="manual-section-title">🔄 Resfriamento Gradual</p>
 <p>Após sair da sauna, não pule em água gelada. Tome uma ducha morna e vá resfriando o corpo aos poucos, começando pelos pés e pernas.</p>
 <p><strong>⚠️ Importante:</strong> Se você tem problemas cardíacos, hipertensão/hipotensão ou está grávida, consulte um médico antes de usar a sauna.</p>`,
-      en:`<p class="manual-section-title">Important information for Sauna use</p>
+      en:`<div class="manual-alert"><span>⚠️</span><div><strong>Warning:</strong> Be careful with the steam outlet (metal hose). Never touch it or place hands/feet in front of it. <strong>SERIOUS BURN RISK.</strong></div></div>
+<div class="manual-alert"><span>🚫</span><div>Sauna use by <strong>unsupervised children is prohibited</strong>. We are not responsible for burns or accidents from misuse or negligence.</div></div>
+<p class="manual-section-title">Important information for Sauna use</p>
 <ul><li>Please <strong>do not touch the thermostat</strong> — it has been calibrated to the ideal temperature.</li><li>It is recommended <strong>not to use the sauna alone</strong>.</li></ul>
 <p class="manual-section-title">⏱️ Time & Temperature</p>
 <ul><li><strong>Ideal duration:</strong> Limit each session to 10–15 minutes (maximum 20 minutes).</li><li><strong>Temperature:</strong> The steam sauna operates between 40°C and 50°C. If the heat feels uncomfortable, leave immediately.</li></ul>
@@ -1164,7 +1171,9 @@ const manualItems = [
 <p class="manual-section-title">🔄 Gradual Cooling</p>
 <p>After leaving the sauna, do not jump into cold water. Take a warm shower and cool your body gradually, starting from feet and legs.</p>
 <p><strong>⚠️ Important:</strong> If you have heart problems, high/low blood pressure or are pregnant, consult a doctor before using the sauna.</p>`,
-      es:`<p class="manual-section-title">Información importante para el uso de la Sauna</p>
+      es:`<div class="manual-alert"><span>⚠️</span><div><strong>Atención:</strong> Cuidado con la salida de vapor (manguera de metal). Nunca la toque ni coloque manos o pies frente a ella. <strong>RIESGO GRAVE DE QUEMADURAS.</strong></div></div>
+<div class="manual-alert"><span>🚫</span><div>Se <strong>prohíbe el uso de la sauna a niños sin supervisión</strong>. No nos responsabilizamos de quemaduras o accidentes por mal uso o negligencia.</div></div>
+<p class="manual-section-title">Información importante para el uso de la Sauna</p>
 <ul><li>Por favor <strong>no toque el termostato</strong> — ya ha sido calibrado a la temperatura ideal.</li><li>Se recomienda <strong>no usar la sauna solo</strong>.</li></ul>
 <p class="manual-section-title">⏱️ Tiempo y Temperatura</p>
 <ul><li><strong>Duración ideal:</strong> Limite cada sesión a 10–15 minutos (máximo 20 minutos).</li><li><strong>Temperatura:</strong> La sauna de vapor opera entre 40°C y 50°C. Si el calor es incómodo, salga inmediatamente.</li></ul>
@@ -1310,7 +1319,58 @@ const manualItems = [
 <p>Vea el video:</p>
 <div class="manual-video-wrap"><iframe src="https://www.youtube.com/embed/c5yFeJVZj48" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`
     }
-  },
+  }  ,{
+    id:'ventilador',
+    icon:'💨',
+    thumb:'images/area_gourmet1.jpg',
+    title:{pt:'Ventilador de Teto e Iluminação da Sala',en:'Ceiling Fan & Lighting',es:'Ventilador de Techo e Iluminación'},
+    body:{
+      pt:`<p>Para utilizar o ventilador de teto e a iluminação ajustável, <strong>ligue o interruptor da lâmpada</strong> (botão touch superior) ao lado da porta de entrada, e use o <strong>controle remoto</strong> para ligar a ventilação e ajustar intensidade e cor.</p><ul><li>Aperte <strong>"F"</strong> para ventilação e <strong>"R"</strong> para exaustão.</li><li>Escolha a velocidade de <strong>1 a 6</strong>.</li></ul>`,
+      en:`<p>To use the ceiling fan and adjustable lighting, <strong>turn on the light switch</strong> (upper touch button) next to the entrance door, then use the <strong>remote control</strong> to adjust ventilation, intensity and colour.</p><ul><li>Press <strong>"F"</strong> for fan and <strong>"R"</strong> for exhaust.</li><li>Choose speed from <strong>1 to 6</strong>.</li></ul>`,
+      es:`<p>Para usar el ventilador de techo y la iluminación, <strong>encienda el interruptor</strong> (botón touch superior) junto a la puerta de entrada y use el <strong>control remoto</strong> para ajustar ventilación, intensidad y color.</p><ul><li>Presione <strong>"F"</strong> para ventilación y <strong>"R"</strong> para extracción.</li><li>Elija velocidad de <strong>1 a 6</strong>.</li></ul>`
+    }
+  },{
+    id:'coifa',
+    icon:'🌬️',
+    thumb:'images/area_gourmet1.jpg',
+    title:{pt:'Exaustor Coifa',en:'Exhaust Hood',es:'Extractor de Cocina'},
+    body:{
+      pt:`<p>Ao usar a churrasqueira e fogão à lenha, <strong>ligue o exaustor da coifa</strong> para evitar retorno de fumaça. O controle fica <strong>atrás do micro-ondas</strong>. Interruptor direito <strong>para cima = exaustão ✅</strong>. ⚠️ Não usar para baixo (ventilador). Use o potenciômetro para regular a velocidade.</p>`,
+      en:`<p>When using the barbecue or wood stove, <strong>turn on the exhaust hood</strong> to prevent smoke. The control is <strong>behind the microwave</strong>. Right switch <strong>up = exhaust ✅</strong>. ⚠️ Do not switch down (fan). Use the knob to adjust speed.</p>`,
+      es:`<p>Al usar la parrilla o el horno de leña, <strong>encienda el extractor</strong> para evitar el humo. El control está <strong>detrás del microondas</strong>. Interruptor derecho <strong>arriba = extracción ✅</strong>. ⚠️ No usar hacia abajo (ventilador). Use el potenciómetro.</p>`
+    }
+  },{
+    id:'ombrelone',
+    icon:'☂️',
+    thumb:'images/hero.jpg',
+    title:{pt:'Ombrelone',en:'Patio Umbrella',es:'Sombrilla'},
+    body:{
+      pt:`<p>Para abrir o ombrelone, <strong>suba com cuidado no banco da mesa</strong>, erga o aro central até passar o primeiro furo e <strong>insira a trava</strong> para fixar.<br><strong>Iluminação LED:</strong> plugue o cabo na <strong>tomada blindada entre os dois vasos</strong> (jardineiras).<br>⚠️ Evite deixar aberto em dias de <strong>vento forte</strong>.</p>`,
+      en:`<p>To open the umbrella, <strong>carefully step onto the bench</strong>, lift the central ring past the first hole and <strong>insert the lock pin</strong>.<br><strong>LED lighting:</strong> plug the cable into the <strong>shielded outlet between the two plant pots</strong>.<br>⚠️ Avoid leaving open on <strong>windy days</strong>.</p>`,
+      es:`<p>Para abrir la sombrilla, <strong>suba con cuidado al banco</strong>, levante el aro central hasta el primer agujero e <strong>inserte el seguro</strong>.<br><strong>Iluminación LED:</strong> conecte el cable al <strong>enchufe blindado entre las macetas</strong>.<br>⚠️ Evite dejarla abierta en días de <strong>viento fuerte</strong>.</p>`
+    }
+  },{
+    id:'cooktop_inst',
+    icon:'🍳',
+    thumb:'images/cooktop.jpg',
+    title:{pt:'Cooktop de Indução',en:'Induction Cooktop',es:'Placa de Inducción'},
+    body:{
+      pt:`<p><strong>Retire-o de cima do micro-ondas</strong> e coloque na bancada ao lado da geladeira. Plugue na <strong>tomada de 20A</strong>. Coloque a panela, pressione <strong>Ligar/Desligar</strong> e depois <strong>Temp./Power</strong>. Selecione a potência conforme a receita.</p><p>Mais informações no vídeo:</p><div class="manual-video-wrap"><iframe src="https://www.youtube.com/embed/dB7wTP3IVH4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`,
+      en:`<p><strong>Remove it from on top of the microwave</strong> and place it on the counter beside the fridge. Plug into the <strong>20A outlet</strong>. Place the pan, press <strong>On/Off</strong> then <strong>Temp./Power</strong>. Select power as needed.</p><p>More info in the video:</p><div class="manual-video-wrap"><iframe src="https://www.youtube.com/embed/dB7wTP3IVH4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`,
+      es:`<p><strong>Retírelo de encima del microondas</strong> y colóquelo en la encimera junto a la heladera. Enchúfelo en el <strong>tomacorriente de 20A</strong>. Coloque la cacerola, presione <strong>Encender/Apagar</strong> luego <strong>Temp./Potencia</strong>. Seleccione según la receta.</p><p>Más info en el video:</p><div class="manual-video-wrap"><iframe src="https://www.youtube.com/embed/dB7wTP3IVH4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`
+    }
+  },{
+    id:'forno_lenha',
+    icon:'🔥',
+    thumb:'images/area_gourmet4.jpg',
+    title:{pt:'Forno à Lenha',en:'Wood-Burning Oven',es:'Horno de Leña'},
+    body:{
+      pt:`<p>Para uso do forno à lenha, por favor <strong>entre em contato com o anfitrião</strong> para maiores instruções.</p>`,
+      en:`<p>To use the wood-burning oven, please <strong>contact the host</strong> for further instructions.</p>`,
+      es:`<p>Para usar el horno de leña, por favor <strong>contáctese con el anfitrión</strong> para obtener más instrucciones.</p>`
+    }
+  }
+
 ];
 
 function renderManual() {
