@@ -273,6 +273,20 @@ footer strong{color:rgba(255,255,255,.65);}
 .inv-subitem input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:#22c55e;cursor:pointer;}
 .inv-subitem span{flex:1;}
 
+/* ── DICA DE ROTA ── */
+.route-tip{margin:32px 24px 0;max-width:1100px;margin-left:auto;margin-right:auto;}
+.route-tip-box{background:linear-gradient(135deg,#1a2d1a 0%,#0d2b0d 100%);border:1.5px solid rgba(251,191,36,.35);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.2);}
+.route-tip-header{display:flex;align-items:center;gap:14px;padding:20px 28px 0;}
+.route-tip-header h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#fbbf24;margin:0;}
+.route-tip-header span{font-size:28px;flex-shrink:0;}
+.route-tip-body{display:flex;align-items:flex-start;gap:22px;padding:16px 28px 28px;}
+.route-tip-text{flex:1;color:rgba(255,255,255,.88);font-size:14.5px;line-height:1.85;}
+.route-tip-text p{margin:0;}
+.route-tip-img{flex-shrink:0;width:140px;}
+.route-tip-img figure{margin:0;border-radius:12px;overflow:hidden;}
+.route-tip-img img{width:100%;height:185px;object-fit:cover;display:block;}
+.route-tip-img figcaption{background:rgba(0,0,0,.65);color:rgba(255,255,255,.8);font-size:10px;padding:5px 7px;font-style:italic;text-align:center;line-height:1.4;}
+@media(max-width:600px){.route-tip-body{flex-direction:column;}.route-tip-img{width:100%;}.route-tip-img img{height:140px;}}
 .manual-section{background:linear-gradient(135deg,#0d3b52 0%,#0a4a3a 60%,#1a3a2a 100%);position:relative;padding:72px 24px;}
 .manual-section::before{content:'';position:absolute;inset:0;background:url(images/hero.jpg) center/cover no-repeat;opacity:.12;z-index:0;}
 .manual-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
@@ -461,12 +475,9 @@ footer strong{color:rgba(255,255,255,.65);}
             data-pt="Um hóspede nos relatou que ao traçar uma rota para o centro, o GPS o levou pelo caminho do Morro da Cruz e bairro Serrinha e não teve boa experiência em razão das ruas íngremes. Como estamos no centro físico da ilha, há 3 rotas para o Centro a partir do Rooftop: uma pelo Morro da Cruz (sentido Serrinha), outra pelo bairro Carvoeira (sentido Túnel) e outra pela Beira-mar Norte (sentido Shopping Villa Romana). A rota do Morro da Cruz é bastante íngreme e passa pela comunidade da Serrinha — local seguro, mas com ruas exigentes, especialmente em dias chuvosos. Você poderá usá-la para fugir do trânsito ou curtir a vista e se aventurar: é o morro mais alto da região, com um belíssimo mirante de onde se vê toda a região central e as pontes, além de trilhas. Portanto, ao sair pela saída de veículos, a menos que queira ir pelo Morro da Cruz, sempre vire à direita, independente do que o GPS indicar — ao chegar na rua de baixo, o GPS ajustará automaticamente para Carvoeira (direita) ou Beira-Mar (esquerda)."
             data-en="A guest told us that when mapping a route to the city centre, their GPS took them via Morro da Cruz and Serrinha neighbourhood, which was not a great experience due to the steep streets. As we are in the physical centre of the island, there are 3 routes from the Rooftop to the Centre: one via Morro da Cruz (towards Serrinha), one via Carvoeira neighbourhood (towards the Tunnel) and one via Beira-mar Norte (towards Villa Romana Shopping). The Morro da Cruz route is quite steep and passes through the Serrinha community — a safe area, but with demanding streets, especially on rainy days. You can use it to avoid traffic or to enjoy the views and adventure: it is the highest hill in the area, with a stunning viewpoint overlooking the entire central region and the bridges, plus hiking trails. Therefore, when leaving through the vehicle exit, unless you want to go via Morro da Cruz, always turn right regardless of what the GPS says — once you reach the street below, the GPS will automatically reroute to Carvoeira (right) or Beira-Mar (left)."
             data-es="Un huésped nos contó que al trazar una ruta al centro, el GPS lo llevó por el camino del Morro da Cruz y el barrio Serrinha, y no tuvo una buena experiencia debido a las calles empinadas. Como estamos en el centro físico de la isla, hay 3 rutas desde el Rooftop al Centro: una por el Morro da Cruz (hacia Serrinha), otra por el barrio Carvoeira (hacia el Túnel) y otra por Beira-mar Norte (hacia el Shopping Villa Romana). La ruta del Morro da Cruz es bastante empinada y pasa por la comunidad de Serrinha — un lugar seguro, pero con calles exigentes, especialmente en días lluviosos. Puede usarla para evitar el tráfico o disfrutar las vistas y aventurarse: es el cerro más alto de la región, con un hermoso mirador desde donde se ve toda la región central y los puentes, además de senderos. Por lo tanto, al salir por la salida de vehículos, a menos que quiera ir por el Morro da Cruz, siempre gire a la derecha sin importar lo que indique el GPS — al llegar a la calle de abajo, el GPS ajustará automáticamente la ruta a Carvoeira (derecha) o Beira-Mar (izquierda)."
-          >Um hóspede nos relatou que ao traçar uma rota para o centro, o GPS o levou pelo caminho do Morro da Cruz...</p>
+          >Um hóspede nos relatou que ao traçar uma rota para o centro, o GPS o levou pelo caminho do Morro da Cruz e bairro Serrinha e não teve boa experiência em razão das ruas íngremes. Como estamos no centro físico da ilha, há 3 rotas para o Centro a partir do Rooftop: uma pelo Morro da Cruz (sentido Serrinha), outra pelo bairro Carvoeira (sentido Túnel) e outra pela Beira-mar Norte (sentido Shopping Villa Romana). A rota do Morro da Cruz é bastante íngreme e passa pela comunidade da Serrinha — local seguro, mas com ruas exigentes, especialmente em dias chuvosos. Você poderá usá-la para fugir do trânsito ou curtir a vista e se aventurar: é o morro mais alto da região, com um belíssimo mirante de onde se vê toda a região central e as pontes, além de trilhas. Portanto, ao sair pela saída de veículos, a menos que queira ir pelo Morro da Cruz, sempre vire à direita, independente do que o GPS indicar — ao chegar na rua de baixo, o GPS ajustará automaticamente para Carvoeira (direita) ou Beira-Mar (esquerda).</p>
         </div>
-        <figure class="route-tip-img">
-          <img src="images/morro-da-cruz2.jpg" alt="Vista do Mirante Morro da Cruz" loading="lazy">
-          <figcaption>📸 Vista panorâmica do Mirante Morro da Cruz — toda a região central e as pontes</figcaption>
-        </figure>
+        <div class="route-tip-img"><figure><img src="images/morro-da-cruz2.jpg" alt="Vista do Mirante Morro da Cruz" loading="lazy"><figcaption>📸 Mirante Morro da Cruz</figcaption></figure></div>
       </div>
     </div>
   </div>
