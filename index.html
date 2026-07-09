@@ -448,6 +448,28 @@ footer strong{color:rgba(255,255,255,.65);}
   <div class="places-section">
     <div class="places-grid" id="placesGrid"></div>
     <div class="load-more-wrap"><button id="loadMoreBtn" class="btn btn-primary" type="button" style="display:none">Ver mais</button></div>
+
+  <div class="route-tip">
+    <div class="route-tip-box">
+      <div class="route-tip-header">
+        <span>⚠️</span>
+        <h3 class="i18n" data-pt="Atenção para esta dica importante!" data-en="Attention: important tip!" data-es="¡Atención: consejo importante!">Atenção para esta dica importante!</h3>
+      </div>
+      <div class="route-tip-body">
+        <div class="route-tip-text">
+          <p class="i18n"
+            data-pt="Um hóspede nos relatou que ao traçar uma rota para o centro, o GPS o levou pelo caminho do Morro da Cruz e bairro Serrinha e não teve boa experiência em razão das ruas íngremes. Como estamos no centro físico da ilha, há 3 rotas para o Centro a partir do Rooftop: uma pelo Morro da Cruz (sentido Serrinha), outra pelo bairro Carvoeira (sentido Túnel) e outra pela Beira-mar Norte (sentido Shopping Villa Romana). A rota do Morro da Cruz é bastante íngreme e passa pela comunidade da Serrinha — local seguro, mas com ruas exigentes, especialmente em dias chuvosos. Você poderá usá-la para fugir do trânsito ou curtir a vista e se aventurar: é o morro mais alto da região, com um belíssimo mirante de onde se vê toda a região central e as pontes, além de trilhas. Portanto, ao sair pela saída de veículos, a menos que queira ir pelo Morro da Cruz, sempre vire à direita, independente do que o GPS indicar — ao chegar na rua de baixo, o GPS ajustará automaticamente para Carvoeira (direita) ou Beira-Mar (esquerda)."
+            data-en="A guest told us that when mapping a route to the city centre, their GPS took them via Morro da Cruz and Serrinha neighbourhood, which was not a great experience due to the steep streets. As we are in the physical centre of the island, there are 3 routes from the Rooftop to the Centre: one via Morro da Cruz (towards Serrinha), one via Carvoeira neighbourhood (towards the Tunnel) and one via Beira-mar Norte (towards Villa Romana Shopping). The Morro da Cruz route is quite steep and passes through the Serrinha community — a safe area, but with demanding streets, especially on rainy days. You can use it to avoid traffic or to enjoy the views and adventure: it is the highest hill in the area, with a stunning viewpoint overlooking the entire central region and the bridges, plus hiking trails. Therefore, when leaving through the vehicle exit, unless you want to go via Morro da Cruz, always turn right regardless of what the GPS says — once you reach the street below, the GPS will automatically reroute to Carvoeira (right) or Beira-Mar (left)."
+            data-es="Un huésped nos contó que al trazar una ruta al centro, el GPS lo llevó por el camino del Morro da Cruz y el barrio Serrinha, y no tuvo una buena experiencia debido a las calles empinadas. Como estamos en el centro físico de la isla, hay 3 rutas desde el Rooftop al Centro: una por el Morro da Cruz (hacia Serrinha), otra por el barrio Carvoeira (hacia el Túnel) y otra por Beira-mar Norte (hacia el Shopping Villa Romana). La ruta del Morro da Cruz es bastante empinada y pasa por la comunidad de Serrinha — un lugar seguro, pero con calles exigentes, especialmente en días lluviosos. Puede usarla para evitar el tráfico o disfrutar las vistas y aventurarse: es el cerro más alto de la región, con un hermoso mirador desde donde se ve toda la región central y los puentes, además de senderos. Por lo tanto, al salir por la salida de vehículos, a menos que quiera ir por el Morro da Cruz, siempre gire a la derecha sin importar lo que indique el GPS — al llegar a la calle de abajo, el GPS ajustará automáticamente la ruta a Carvoeira (derecha) o Beira-Mar (izquierda)."
+          >Um hóspede nos relatou que ao traçar uma rota para o centro, o GPS o levou pelo caminho do Morro da Cruz...</p>
+        </div>
+        <figure class="route-tip-img">
+          <img src="images/morro-da-cruz2.jpg" alt="Vista do Mirante Morro da Cruz" loading="lazy">
+          <figcaption>📸 Vista panorâmica do Mirante Morro da Cruz — toda a região central e as pontes</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
   </div>
 </main>
 
@@ -1481,6 +1503,20 @@ const manualItems = [
       es:`<p>El tendedero está en la <strong>terraza, junto a la ventana del dormitorio</strong>. Para usar: abra los dos paneles, jale los dos cordones simultáneamente hasta extenderlo por completo y ajuste los paneles sobre las varillas.</p>
 <p>Vea el video:</p>
 <div class="manual-video-wrap"><iframe src="https://www.youtube.com/embed/k_X-Z0PRjz8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`
+    }
+  }
+  ,{
+    id:'cortina',
+    icon:'🪟',
+    thumb:'images/cortina.jpg',
+    title:{pt:'Cortina da Sala de TV',en:'Living Room Blackout Curtain',es:'Cortina del Salón de TV'},
+    body:{
+      pt:`<p>Use a <strong>cortina blackout</strong> para separar o ambiente e bloquear a claridade ao ir dormir.</p>
+<p>Deslize com cuidado a cortina no trilho para que <strong>não trave nos parafusos</strong>. Use o <strong>botão no canto inferior</strong> para fixá-la na parede.</p>`,
+      en:`<p>Use the <strong>blackout curtain</strong> to separate the space and block out light when going to sleep.</p>
+<p>Slide the curtain carefully along the rail so it <strong>does not catch on the screws</strong>. Use the <strong>button at the bottom corner</strong> to fix it to the wall.</p>`,
+      es:`<p>Use la <strong>cortina blackout</strong> para separar el ambiente y bloquear la claridad al ir a dormir.</p>
+<p>Deslice con cuidado la cortina en el riel para que <strong>no se trabe en los tornillos</strong>. Use el <strong>botón en la esquina inferior</strong> para fijarla a la pared.</p>`
     }
   }
 ];
